@@ -76,6 +76,7 @@
             name="notes"
             type="textarea"
             maxlength="65000"
+            placeholder="{{ trans('general.placeholders.notes') }}"
     />
 
 
