@@ -17,7 +17,7 @@
             :errors="$errors ?? null"
             field_name="name"
             input_style="width: 50%"
-            class="farts"
+            class="test"
             label_style="color: red"
     />
 
