@@ -13,7 +13,13 @@
     'type' => 'text',
     'placeholder' => null,
     'maxlength' => 191,
+    'minlength' => null,
+    'min' => null,
+    'max' => null,
+    'step' => null,
     'disabled' => false,
+    'error_offset_class' => 'col-md-7 col-md-offset-3',
+    'info_tooltip_text' => null,
 ])
 
 <div {{ $attributes->merge(['class' => 'form-group']) }}>
@@ -28,11 +34,11 @@
     <div {{ $attributes->merge(['class' => $input_div_class]) }} {{ ($div_style) ? $attributes->merge(['style' => $div_style]):'' }}>
 
         @php
-            $type = in_array($type, ['text', 'email', 'url', 'tel', 'number', 'password']) ? 'text' : $type;
+            $blade_type = in_array($type, ['text', 'email', 'url', 'tel', 'number', 'password']) ? 'text' : $type;
         @endphp
 
         <x-dynamic-component
-                :component="'input.'.$type"
+                :component="'input.'.$blade_type"
                 :aria-label="$name"
                 :$name
                 :$placeholder
@@ -43,21 +49,42 @@
                 :value="old($name, $item->{$name})"
                 :$type
                 :$maxlength
+                :$minlength
                 :$disabled
-
+                :$min
+                :$max
+                :$step
         />
+    </div>
+
+
+        @if ($info_tooltip_text)
+            <!-- Info Tooltip -->
+            <div class="col-md-1 text-left" style="padding-left:0; margin-top: 5px;">
+                <x-input.info-tooltip>
+                    {{ $info_tooltip_text }}
+                </x-input.info-tooltip>
+            </div>
+        @endif
+
 
         @error($name)
-            <span class="alert-msg" role="alert-msg">
-                <i class="fas fa-times" aria-hidden="true"></i>
-                {{ $message }}
-            </span>
+        <!-- Form Error -->
+            <div {{ $attributes->merge(['class' => $error_offset_class]) }}>
+                <span class="alert-msg" role="alert">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                    {{ $message }}
+                </span>
+            </div>
         @enderror
 
         @if ($help_text)
-            <p class="help-block">
-                {!! $help_text !!}
-            </p>
-       @endif
-    </div>
+        <!-- Help Text -->
+            <div {{ $attributes->merge(['class' => $error_offset_class]) }}>
+                <p class="help-block">
+                    {!! $help_text !!}
+                </p>
+            </div>
+        @endif
+
 </div>
