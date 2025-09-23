@@ -40,7 +40,7 @@
             :$item
             :$errors
             name="fax"
-            type="tel"
+            type="email"
     />
 
 
