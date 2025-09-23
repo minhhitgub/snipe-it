@@ -19,7 +19,7 @@
 <div {{ $attributes->merge(['class' => 'form-group']) }}>
 
     <x-form-label
-            :$label
+            :label="$label ?? null"
             :style="$label_style ?? null"
             class="{{ $label_class }}"
     />
