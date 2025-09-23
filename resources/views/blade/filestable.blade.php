@@ -4,7 +4,7 @@
     'object_type' => '',
 ])
 
-<!-- begin non-ajaxed file listing table -->
+<!-- begin ajaxed file listing table -->
 <div class="table-responsive">
     <table
             data-columns="{{ \App\Presenters\UploadedFilesPresenter::dataTableLayout() }}"
@@ -30,6 +30,4 @@
 
 </div>
 
-
-
-<!-- end non-ajaxed file listing table -->
+<!-- end ajaxed file listing table -->
