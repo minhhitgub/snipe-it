@@ -12,6 +12,7 @@
     'item' => null,
     'type' => 'text',
     'placeholder' => null,
+    'maxlength' => 191,
 ])
 
 <div {{ $attributes->merge(['class' => 'form-group']) }}>
@@ -40,6 +41,8 @@
                 :required="Helper::checkIfRequired($item, $name)"
                 :value="old($name, $item->{$name})"
                 :$type
+                :$maxlength
+
         />
 
         @error($name)
