@@ -70,28 +70,35 @@ body:
   - type: dropdown
     id: on-demo
     attributes:
-      label: Can you reproduce this on the demo at https://demo.snipeitapp.com?
+      label: Can you reproduce this on the public demo?
+      description: You can check this at https://demo.snipeitapp.com.
       options:
         - 'Yes'
         - 'No'
         - N/A
+    validations:
+      required: true
   - type: dropdown
     id: fmcs
     attributes:
       label: Do you have full multiple company support enabled?
-      description: You can check this in Admin Settings > General Settings > Scoping.
+      description: You can check this in your Snipe-IT installation at `Admin Settings > General Settings > Scoping`.
       options:
         - 'Yes'
         - 'No'
+    validations:
+      required: true
   - type: dropdown
     id: fmcs-location
     attributes:
       label: If you have full multiple company support enabled, do you have location scoping to company enabled?
-      description: You can check this in Admin Settings > General Settings > Scoping.
+      description: You can check this in your Snipe-IT installation at `Admin Settings > General Settings > Scoping`.
       options:
         - 'Yes'
         - 'No'
         - I do not have full multiple company support enabled
+    validations:
+      required: true
   - type: textarea
     id: server-logs
     attributes:
