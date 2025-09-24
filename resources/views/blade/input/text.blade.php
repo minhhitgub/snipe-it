@@ -5,4 +5,7 @@
     'required' => false,
 ])
 <!-- input-text blade component -->
-<input {{ $attributes->merge(['class' => 'form-control']) }} {{ ($input_style) ? $attributes->merge(['style' => $input_style]): '' }} {{ ($required ?? false) ? 'required' : '' }} />
+<input
+    {{ $attributes->merge(['class' => 'form-control', 'style' => $input_style]) }}
+    @required($required)
+/>
