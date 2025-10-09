@@ -20,8 +20,9 @@ class UploadedFilesController extends Controller
 
 
     /**
-     * List files for an object
+     * List Files for an Object
      *
+     * @group Files
      * @param  \App\Http\Requests\UploadFileRequest $request
      * @param  string                               $object_type the type of object to upload the file to
      * @param  int                                  $id          the ID of the object to list files for
@@ -80,8 +81,9 @@ class UploadedFilesController extends Controller
 
 
     /**
-     * Accepts a POST to upload a file to the server.
+     * Upload File to an Object
      *
+     * @group Files
      * @param  \App\Http\Requests\UploadFileRequest $request
      * @param  string                               $object_type the type of object to upload the file to
      * @param  int                                  $id          the ID of the object to store so we can check permisisons
@@ -128,8 +130,9 @@ class UploadedFilesController extends Controller
 
 
     /**
-     * Check for permissions and display the file.
+     * Display File
      *
+     * @group Files
      * @param  \App\Http\Requests\UploadFileRequest $request
      * @param  string                               $object_type the type of object to upload the file to
      * @param  int                                  $id          the ID of the object to delete from so we can check permisisons
@@ -171,8 +174,9 @@ class UploadedFilesController extends Controller
     }
 
     /**
-     * Delete the associated file
+     * Delete File
      *
+     * @group Files
      * @param  \App\Http\Requests\UploadFileRequest $request
      * @param  string                               $object_type the type of object to upload the file to
      * @param  int                                  $id          the ID of the object to delete from so we can check permisisons

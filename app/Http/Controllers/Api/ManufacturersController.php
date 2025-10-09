@@ -16,8 +16,20 @@ use Illuminate\Http\JsonResponse;
 class ManufacturersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Manufacturers
      *
+     * @group Manufacturers
+     * @queryParam search string Search term to filter results. Example: Dell
+     * @queryParam name string Filter by exact manufacturer name. Example: Dell
+     * @queryParam url string Filter by exact URL. Example: http://example.com
+     * @queryParam support_url string Filter by exact support URL. Example: http://support.example.com
+     * @queryParam warranty_lookup_url string Filter by exact warranty lookup URL. Example: http://warranty.example.com
+     * @queryParam support_phone string Filter by exact support phone number. Example: 1-800-555-5555
+     * @queryParam support_email string Filter by exact support email address. Example: support@example.org
+     * @queryParam sort string Column to sort results by. Allowed values: id, name, url, support_url, support_email, warranty_lookup_url, support_phone, created_at, updated_at, assets_count, consumables_count, components_count, licenses_count. Default: created_at. Example: name
+     * @queryParam order string Order of sorted results. Allowed values: asc, desc. Default: desc. Example: asc
+     * @queryParam offset integer Offset/starting position of the results. Default: 0. Example: 0
+     * @queryParam limit integer Limit the number of results returned. Default: 25. Maximum: 100. Example: 50
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @return \Illuminate\Http\Response
@@ -120,8 +132,9 @@ class ManufacturersController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create Maintenance
      *
+     * @group Manufacturers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest $request
@@ -141,8 +154,9 @@ class ManufacturersController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Manufacturer
      *
+     * @group Manufacturers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -156,8 +170,9 @@ class ManufacturersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Manufacturer
      *
+     * @group Manufacturers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -178,8 +193,9 @@ class ManufacturersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Manufacturer
      *
+     * @group Manufacturers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -200,8 +216,9 @@ class ManufacturersController extends Controller
     }
 
     /**
-     * Restore a given Manufacturer (mark as un-deleted)
+     * Restore Deleted Manufacturer
      *
+     * @group Manufacturers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v6.3.4]
      * @param int $id
@@ -237,8 +254,9 @@ class ManufacturersController extends Controller
     }
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Manufacturers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer

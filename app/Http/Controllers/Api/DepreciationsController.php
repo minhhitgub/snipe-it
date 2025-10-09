@@ -12,8 +12,9 @@ use Illuminate\Http\JsonResponse;
 class DepreciationsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Depreciations
      *
+     * @group Depreciations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -65,8 +66,9 @@ class DepreciationsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create Depreciation
      *
+     * @group Depreciations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \Illuminate\Http\Request  $request
@@ -85,8 +87,9 @@ class DepreciationsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Depreciation
      *
+     * @group Depreciations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -100,8 +103,9 @@ class DepreciationsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Depreciation
      *
+     * @group Depreciations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \Illuminate\Http\Request  $request
@@ -121,8 +125,9 @@ class DepreciationsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Depreciation
      *
+     * @group Depreciations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id

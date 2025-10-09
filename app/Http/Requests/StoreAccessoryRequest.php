@@ -38,7 +38,7 @@ class StoreAccessoryRequest extends ImageUploadRequest
     public function rules(): array
     {
         return array_merge(
-            ['category_type' => 'in:accessory'],
+            ['category_type' => 'required|in:accessory'],
             parent::rules(),
         );
     }

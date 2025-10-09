@@ -50,10 +50,32 @@ class AssetsController extends Controller
     use MigratesLegacyAssetLocations;
 
     /**
-     * Returns JSON listing of all assets
+     * List Assets
      *
+     * @group Assets
+     * @queryParam action string The action to filter by. Example: audits, checkins
+     * @queryParam upcoming_status string The status to filter by. Example: due, overdue, due-or-overdue
+     * @queryParam status string The asset status to filter by. Example: RTD, Deployed, Pending, Undeployable, Archived, Requestable
+     * @queryParam status_id int The asset status ID to filter by. Example: 1
+     * @queryParam asset_tag string The asset tag to filter by. Example: ABC123
+     * @queryParam serial string The serial number to filter by. Example: SN123456
+     * @queryParam requestable boolean Filter by requestable assets. Example: true
+     * @queryParam model_id int|array The model ID or IDs to filter by. Example: 1 or model_id[]=1&model_id[]=2
+     * @queryParam category_id int The category ID to filter by. Example: 1
+     * @queryParam location_id int The location ID to filter by. Example: 1
+     * @queryParam rtd_location_id int The RTD location ID to filter by. Example: 1
+     * @queryParam supplier_id int The supplier ID to filter by. Example: 1
+     * @queryParam asset_eol_date date The asset end-of-life date to filter by. Example: 2023-12-31
+     * @queryParam assigned_to int The user ID or department ID the asset is assigned to. Example: 1
+     * @queryParam assigned_type string The type of assignment, either 'user' or 'department'. Example: user
+     * @queryParam company_id int The company ID to filter by. Example: 1
+     * @queryParam manufacturer_id int The manufacturer ID to filter by. Example: 1
+     * @queryParam depreciation_id int The depreciation ID to filter by. Example: 1
+     * @queryParam byod boolean Filter by BYOD assets. Example: true
+     * @queryParam order_number string The order number to filter by. Example: PO12345
+     * @queryParam search string A text string to search for. Example: laptop
+     * @queryParam filter string A JSON object of key/value pairs to filter by. Example: {"status_label":"RTD","location":"Headquarters"}
      * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @param int $assetId
      * @since [v4.0]
      */
     public function index(Request $request, $action = null, $upcoming_status = null) : JsonResponse | array
@@ -475,8 +497,9 @@ class AssetsController extends Controller
 
 
     /**
-     * Returns JSON with information about an asset (by tag) for detail view.
+     * Lookup by Tag
      *
+     * @group Assets
      * @param string $tag
      * @since [v4.2.1]
      * @author [A. Gianotto] [<snipe@snipe.net>]
@@ -510,8 +533,9 @@ class AssetsController extends Controller
     }
 
     /**
-     * Returns JSON with information about an asset (by serial) for detail view.
+     * Lookup by Serial
      *
+     * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param string $serial
      * @since [v4.2.1]
@@ -553,8 +577,9 @@ class AssetsController extends Controller
     }
 
     /**
-     * Returns JSON with information about an asset for detail view.
+     * Show Asset
      *
+     * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param int $assetId
      * @since [v4.0]
@@ -585,8 +610,9 @@ class AssetsController extends Controller
 
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer
@@ -644,8 +670,9 @@ class AssetsController extends Controller
 
 
     /**
-     * Accepts a POST request to create a new asset
+     * Create Asset
      *
+     * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param \App\Http\Requests\ImageUploadRequest $request
      * @since [v4.0]
@@ -739,8 +766,15 @@ class AssetsController extends Controller
 
 
     /**
-     * Accepts a POST request to update an asset
+     * Update Asset
      *
+     * @group Assets
+     * @queryParam model_id int The model ID to associate the asset with. Example: 1
+     * @queryParam company_id int The company ID to associate the asset with. Example: 1
+     * @queryParam rtd_location_id int The RTD location ID to associate the asset with. Example: 1
+     * @queryParam last_audit_date date The last audit date for the asset. Example: 2023-12-31
+     * @queryParam image file The image file to upload for the asset. Example: (binary)
+     * @param \App\Http\Requests\UpdateAssetRequest $request
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -831,8 +865,10 @@ class AssetsController extends Controller
 
 
     /**
-     * Delete a given asset (mark as deleted).
+     * Delete Asset
      *
+     * @group Assets
+     * @param int $id
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param int $assetId
      * @since [v4.0]
@@ -866,8 +902,9 @@ class AssetsController extends Controller
 
 
     /**
-     * Restore a soft-deleted asset.
+     * Restore Asset
      *
+     * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param int $assetId
      * @since [v5.1.18]
@@ -894,8 +931,9 @@ class AssetsController extends Controller
     }
 
     /**
-     * Checkout an asset by its tag.
+     * Checkout by Asset Tag
      *
+     * @group Assets
      * @author [N. Butler]
      * @param string $tag
      * @since [v6.0.5]
@@ -909,8 +947,9 @@ class AssetsController extends Controller
     }
 
     /**
-     * Checkout an asset
+     * Checkout Asset
      *
+     * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param int $assetId
      * @since [v4.0]
@@ -984,8 +1023,9 @@ class AssetsController extends Controller
 
 
     /**
-     * Checkin an asset
+     * Checkin Asset
      *
+     * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param int $assetId
      * @since [v4.0]
@@ -1069,8 +1109,9 @@ class AssetsController extends Controller
     }
 
     /**
-     * Checkin an asset by asset tag
+     * Checkin by Asset Tag
      *
+     * @group Assets
      * @author [A. Janes] [<ajanes@adagiohealth.org>]
      * @since [v6.0]
      */
@@ -1093,8 +1134,9 @@ class AssetsController extends Controller
 
 
     /**
-     * Mark an asset as audited
+     * Audit Asset
      *
+     * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param int $id
      * @since [v4.0]
@@ -1218,8 +1260,9 @@ class AssetsController extends Controller
 
 
     /**
-     * Returns JSON listing of all requestable assets
+     * Show Requestable Assets
      *
+     * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -1306,6 +1349,11 @@ class AssetsController extends Controller
     }
 
 
+    /**
+     * List Assets Assigned to Asset
+     *
+     * @group Assets
+     */
     public function assignedAssets(Request $request, Asset $asset) : JsonResponse | array
     {
         $this->authorize('view', Asset::class);
@@ -1323,6 +1371,11 @@ class AssetsController extends Controller
         return (new AssetsTransformer)->transformAssets($assets, $total);
     }
 
+    /**
+     * List Accessories Assigned to Asset
+     *
+     * @group Assets
+     */
     public function assignedAccessories(Request $request, Asset $asset) : JsonResponse | array
     {
         $this->authorize('view', Asset::class);
@@ -1354,10 +1407,10 @@ class AssetsController extends Controller
     }
 
     /**
-     * Generate asset labels by tag
-     * 
+     * Generate Label by Asset Tag
+     *
+     * @group Assets
      * @author [Nebelkreis] [https://github.com/NebelKreis]
-     * 
      * @param Request $request Contains asset_tags array of asset tags to generate labels for
      * @return JsonResponse Returns base64 encoded PDF on success, error message on failure
      */

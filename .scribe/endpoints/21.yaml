@@ -1,0 +1,935 @@
+name: Users
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/users/selectlist
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Selectlist
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=JC6ltPDEnZt7b2BKD6p43Hf6gJpbvexFKPt1vVbv; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/ldapsync
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'LDAP Sync Users'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/two_factor_reset
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Reset Two-factor'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/users/me
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Current User Info'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=v6Cb1rLm3mlkNzuAF1e9YU4OfC74Iqhj4N9H03fv; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/users/{user}/assets'
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List Assets Assigned to User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user:
+        name: user
+        description: 'The user.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=NM7fi7M9rXZA4UsxLSrlxCrnhqup454f060pIp2G; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/users/{user}/email'
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Email Asset List to User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user:
+        name: user
+        description: 'The user.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/users/{user}/accessories'
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List Accessories Assigned to User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user:
+        name: user
+        description: 'The user.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=KCloddtglY2T8yjhIKUdghLKpNfXla9kNHBZ43ov; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/users/{user}/licenses'
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List Licenses Assigned to User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user:
+        name: user
+        description: 'The user.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=eUKLUGZlhjIQ7LBaXgHhnmtV2ULOtAixNSPaoUj5; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/users/{user}/restore'
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Restore User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user:
+        name: user
+        description: 'The user.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/users
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List Users'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        name: search
+        description: 'Search term to filter results.'
+        required: false
+        example: John
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      filter:
+        name: filter
+        description: 'JSON object of key/value pairs to filter results. Allowed keys: last_name, first_name, display_name, email, jobtitle, username, employee_num, groups, activated, created_at, updated_at, two_factor_enrolled, two_factor_optin, last_login, assets_count, licenses_count, consumables_count, accessories_count, manages_users_count, manages_locations_count, phone, mobile, address, city, state, country, zip, id, ldap_import, remote, vip, start_date, end_date, autoassign_licenses, website, locale, notes.'
+        required: false
+        example: '{"last_name":"Doe","first_name":"John"}'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      activated:
+        name: activated
+        description: 'Filter by exact activation status. Allowed values: 0, 1.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      admins:
+        name: admins
+        description: 'Filter to only admin and superadmin users. Allowed values: true, false.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      superadmins:
+        name: superadmins
+        description: 'Filter to only superadmin users. Allowed values: true, false.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      company_id:
+        name: company_id
+        description: 'Filter by exact company ID.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      phone:
+        name: phone
+        description: 'Filter by exact phone number.'
+        required: false
+        example: 555-1234
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      mobile:
+        name: mobile
+        description: 'Filter by exact mobile number.'
+        required: false
+        example: 555-5678
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      location_id:
+        name: location_id
+        description: 'Filter by exact location ID.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      created_by:
+        name: created_by
+        description: 'Filter by exact user ID who created the user.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Filter by exact email address.'
+        required: false
+        example: jdoe@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      username:
+        name: username
+        description: 'Filter by exact username.'
+        required: false
+        example: jdoe
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      first_name:
+        name: first_name
+        description: 'Filter by exact first name.'
+        required: false
+        example: John
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Filter by exact last name.'
+        required: false
+        example: Doe
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      display_name:
+        name: display_name
+        description: 'Filter by exact display name.'
+        required: false
+        example: 'John Doe'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      employee_num:
+        name: employee_num
+        description: 'Filter by exact employee number.'
+        required: false
+        example: '12345'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      state:
+        name: state
+        description: 'Filter by exact state.'
+        required: false
+        example: CA
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      country:
+        name: country
+        description: 'Filter by exact country.'
+        required: false
+        example: USA
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      website:
+        name: website
+        description: 'Filter by exact website URL.'
+        required: false
+        example: 'https://example.com'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      zip:
+        name: zip
+        description: 'Filter by exact ZIP code.'
+        required: false
+        example: '90210'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      group_id:
+        name: group_id
+        description: 'Filter by exact group ID.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      department_id:
+        name: department_id
+        description: 'Filter by exact department ID.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      manager_id:
+        name: manager_id
+        description: 'Filter by exact manager (user) ID.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      ldap_import:
+        name: ldap_import
+        description: 'Filter by exact LDAP import status. Allowed values: 0, 1.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      remote:
+        name: remote
+        description: 'Filter by exact remote status. Allowed values: 0, 1.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      vip:
+        name: vip
+        description: 'Filter by exact VIP status. Allowed values: 0, 1.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      two_factor_enrolled:
+        name: two_factor_enrolled
+        description: 'Filter by exact two-factor authentication enrollment status. Allowed values: 0, 1.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      search: John
+      filter: '{"last_name":"Doe","first_name":"John"}'
+      activated: 1
+      admins: true
+      superadmins: true
+      company_id: 1
+      phone: 555-1234
+      mobile: 555-5678
+      location_id: 1
+      created_by: 1
+      email: jdoe@example.com
+      username: jdoe
+      first_name: John
+      last_name: Doe
+      display_name: 'John Doe'
+      employee_num: '12345'
+      state: CA
+      country: USA
+      website: 'https://example.com'
+      zip: '90210'
+      group_id: 1
+      department_id: 1
+      manager_id: 1
+      ldap_import: 1
+      remote: 1
+      vip: 1
+      two_factor_enrolled: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=s07zlyGGJd59cbeYkhBsNL77mOqzDJopVBTzIxnO; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/users/{id}'
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=xbTJ0W206Ov3xctFXMSvwEt61rFFMK3phcqDGQ0s; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/users/{id}'
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/users/{id}'
+    metadata:
+      groupName: Users
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -24,8 +24,9 @@ use Illuminate\Http\JsonResponse;
 class ImportController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Import Files
      *
+     * @group Imports
      */
     public function index() : JsonResponse | array
     {
@@ -35,8 +36,9 @@ class ImportController extends Controller
     }
 
     /**
-     * Process and store a CSV upload file.
+     * Save Import File
      *
+     * @group Imports
      * @param  \Illuminate\Http\Request  $request
      */
     public function store() : JsonResponse
@@ -184,8 +186,9 @@ class ImportController extends Controller
     }
 
     /**
-     * Processes the specified Import.
+     * Process Import
      *
+     * @group Imports
      * @param  int  $import_id
      */
     public function process(ItemImportRequest $request, $import_id) : JsonResponse
@@ -255,8 +258,9 @@ class ImportController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Import File
      *
+     * @group Imports
      * @param  int  $import_id
      */
     public function destroy($import_id) : JsonResponse

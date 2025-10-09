@@ -94,7 +94,7 @@ class Handler extends ExceptionHandler
 
             // Handle API requests that fail because Carbon cannot parse the date on validation (when a submitted date value is definitely not a date)
             if ($e instanceof InvalidFormatException) {
-                return response()->json(Helper::formatStandardApiResponse('error', null, trans('validation.date', ['attribute' => 'date'])), 200);
+                return response()->json(Helper::formatStandardApiResponse('error', null, trans('validation.date', ['attribute' => 'date'])), config('app.validation_status_code'));
             }
 
             // Handle API requests that fail because the model doesn't exist
@@ -124,7 +124,7 @@ class Handler extends ExceptionHandler
             // never even get to the controller where we normally  nicely format JSON responses
             if ($e instanceof ValidationException) {
                 $response = $this->invalidJson($request, $e);
-                return response()->json(Helper::formatStandardApiResponse('error', null,  $e->errors()), 200);
+                return response()->json(Helper::formatStandardApiResponse('error', null,  $e->errors()), config('app.validation_status_code'));
             }
 
         }
@@ -198,7 +198,7 @@ class Handler extends ExceptionHandler
 
     protected function invalidJson($request, ValidationException $exception)
     {
-        return response()->json(Helper::formatStandardApiResponse('error', null, $exception->errors()), 200);
+        return response()->json(Helper::formatStandardApiResponse('error', null, $exception->errors()), config('app.validation_status_code'));
     }
 
 

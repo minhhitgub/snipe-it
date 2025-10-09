@@ -11,12 +11,9 @@ use App\Http\Requests\StoreAccessoryRequest;
 use App\Http\Transformers\AccessoriesTransformer;
 use App\Http\Transformers\SelectlistTransformer;
 use App\Models\Accessory;
-use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ImageUploadRequest;
 use App\Models\AccessoryCheckout;
@@ -26,11 +23,25 @@ class AccessoriesController extends Controller
     use CheckInOutRequest;
 
     /**
-     * Display a listing of the resource.
+     * List accessories
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Accessories
+     * @queryParam search string A search term to filter results by. Example: keyboard
+     * @queryParam filter[<fieldname>] string A field to filter by. Example
+     * @queryParam company_id int Filter by company ID. Example: 1
+     * @queryParam category_id int Filter by category ID. Example: 1
+     * @queryParam manufacturer_id int Filter by manufacturer ID. Example: 1
+     * @queryParam supplier_id int Filter by supplier ID. Example: 1
+     * @queryParam location_id int Filter by location ID. Example: 1
+     * @queryParam notes string Filter by notes. Example: For office use only
+     * @queryParam offset int The number of items to skip before starting to collect the result set. Example: 0
+     * @queryParam limit int The number of items to return. Example: 50
+     * @queryParam sort string The field to sort by. Example: created_at
+     * @queryParam order string The order to sort by. Example: desc
+     *
      * @return \Illuminate\Http\Response
+     *@since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function index(Request $request)
     {
@@ -151,9 +162,13 @@ class AccessoriesController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Create Accessory
      *
-     * @param  \App\Http\Requests\ImageUploadRequest $request
+     * @group Accessories
+     * @bodyParam name string required The name of the accessory. Example: Apple Bluetooth Keyboard
+     * @bodyParam qty int required The number of accessories to create. Example: 10
+     * @bodyParam category_id int required The ID of the category to assign this accessory to. Example: 1
+     * @bodyParam image file No-example
      * @return \Illuminate\Http\JsonResponse
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
@@ -173,8 +188,9 @@ class AccessoriesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Accessory
      *
+     * @group Accessories
      * @param  int  $id
      * @return array
      * @author [A. Gianotto] [<snipe@snipe.net>]
@@ -189,26 +205,11 @@ class AccessoriesController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return array
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
-     */
-    public function accessory_detail($id)
-    {
-        $this->authorize('view', Accessory::class);
-        $accessory = Accessory::findOrFail($id);
-
-        return (new AccessoriesTransformer)->transformAccessory($accessory);
-    }
-
 
     /**
-     * Get the list of checkouts for a specific accessory
+     * Show Accessory Checkouts
      *
+     * @group Accessories
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -238,8 +239,9 @@ class AccessoriesController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Update accessory.
      *
+     * @group Accessories
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest $request
@@ -261,8 +263,9 @@ class AccessoriesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Accessory
      *
+     * @group Accessories
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -285,11 +288,12 @@ class AccessoriesController extends Controller
 
 
     /**
-     * Save the Accessory checkout information.
+     * Checkout Accessory
      *
      * If Slack is enabled and/or asset acceptance is enabled, it will also
      * trigger a Slack message and send an email.
      *
+     * @group Accessories
      * @param  int  $accessoryId
      * @return \Illuminate\Http\JsonResponse
      * @author [A. Gianotto] [<snipe@snipe.net>]
@@ -332,7 +336,7 @@ class AccessoriesController extends Controller
     }
 
     /**
-     * Check in the item so that it can be checked out again to someone else
+     * Checkin Accessory
      *
      * @param Request $request
      * @param int $accessoryUserId

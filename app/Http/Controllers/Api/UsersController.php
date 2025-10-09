@@ -35,8 +35,36 @@ use Illuminate\Http\JsonResponse;
 class UsersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Users
      *
+     * @group Users
+     * @queryParam search string Search term to filter results. Example: John
+     * @queryParam filter string JSON object of key/value pairs to filter results. Allowed keys: last_name, first_name, display_name, email, jobtitle, username, employee_num, groups, activated, created_at, updated_at, two_factor_enrolled, two_factor_optin, last_login, assets_count, licenses_count, consumables_count, accessories_count, manages_users_count, manages_locations_count, phone, mobile, address, city, state, country, zip, id, ldap_import, remote, vip, start_date, end_date, autoassign_licenses, website, locale, notes. Example: {"last_name":"Doe","first_name":"John"}
+     * @queryParam activated integer Filter by exact activation status. Allowed values: 0, 1. Example: 1
+     * @queryParam admins boolean Filter to only admin and superadmin users. Allowed values: true, false. Example: true
+     * @queryParam superadmins boolean Filter to only superadmin users. Allowed values: true, false. Example: true
+     * @queryParam company_id integer Filter by exact company ID. Example: 1
+     * @queryParam phone string Filter by exact phone number. Example: 555-1234
+     * @queryParam mobile string Filter by exact mobile number. Example: 555-5678
+     * @queryParam location_id integer Filter by exact location ID. Example: 1
+     * @queryParam created_by integer Filter by exact user ID who created the user. Example: 1
+     * @queryParam email string Filter by exact email address. Example: jdoe@example.com
+     * @queryParam username string Filter by exact username. Example: jdoe
+     * @queryParam first_name string Filter by exact first name. Example: John
+     * @queryParam last_name string Filter by exact last name. Example: Doe
+     * @queryParam display_name string Filter by exact display name. Example: John Doe
+     * @queryParam employee_num string Filter by exact employee number. Example: 12345
+     * @queryParam state string Filter by exact state. Example: CA
+     * @queryParam country string Filter by exact country. Example: USA
+     * @queryParam website string Filter by exact website URL. Example: https://example.com
+     * @queryParam zip string Filter by exact ZIP code. Example: 90210
+     * @queryParam group_id integer Filter by exact group ID. Example: 1
+     * @queryParam department_id integer Filter by exact department ID. Example: 1
+     * @queryParam manager_id integer Filter by exact manager (user) ID. Example: 1
+     * @queryParam ldap_import integer Filter by exact LDAP import status. Allowed values: 0, 1. Example: 1
+     * @queryParam remote integer Filter by exact remote status. Allowed values: 0, 1. Example: 1
+     * @queryParam vip integer Filter by exact VIP status. Allowed values: 0, 1. Example: 1
+     * @queryParam two_factor_enrolled integer Filter by exact two-factor authentication enrollment status. Allowed values: 0, 1. Example: 1
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      *
@@ -370,8 +398,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Users
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer
@@ -426,8 +455,9 @@ class UsersController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Create User
      *
+     * @group Users
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \Illuminate\Http\Request  $request
@@ -485,8 +515,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show User
      *
+     * @group Users
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param  int  $id
      */
@@ -505,8 +536,9 @@ class UsersController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Update User
      *
+     * @group Users
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \Illuminate\Http\Request  $request
@@ -606,8 +638,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete User
      *
+     * @group Users
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -643,8 +676,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Return JSON containing a list of assets assigned to a user.
+     * List Assets Assigned to User
      *
+     * @group Users
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v3.0]
      * @param $userId
@@ -686,8 +720,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Notify a specific user via email with all of their assigned assets.
+     * Email Asset List to User
      *
+     * @group Users
      * @author [Lukas Fehling] [<lukas.fehling@adabay.rocks>]
      * @since [v6.0.13]
      * @param Request $request
@@ -715,8 +750,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Return JSON containing a list of consumables assigned to a user.
+     * List Consumables Assigned to User
      *
+     * @group Users
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v3.0]
      * @param $userId
@@ -732,8 +768,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Return JSON containing a list of accessories assigned to a user.
+     * List Accessories Assigned to User
      *
+     * @group Users
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.6.14]
      * @param $userId
@@ -750,8 +787,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Return JSON containing a list of licenses assigned to a user.
+     * List Licenses Assigned to User
      *
+     * @group Users
      * @author [N. Mathar] [<snipe@snipe.net>]
      * @since [v5.0]
      * @param $userId
@@ -771,8 +809,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Reset the user's two-factor status
+     * Reset Two-factor
      *
+     * @group Users
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v3.0]
      * @param $userId
@@ -810,8 +849,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Get info on the current user.
+     * Get Current User Info
      *
+     * @group Users
      * @author [Juan Font] [<juanfontalonso@gmail.com>]
      * @since [v4.4.2]
      * @param  \Illuminate\Http\Request  $request
@@ -841,8 +881,9 @@ class UsersController extends Controller
     }
 
     /**
-     * Restore a soft-deleted user.
+     * Restore User
      *
+     * @group Users
      * @author [E. Taylor] [<dev@evantaylor.name>]
      * @param int $userId
      * @since [v6.0.0]
@@ -879,8 +920,9 @@ class UsersController extends Controller
 
 
     /**
-     * Run the LDAP sync command to import users from LDAP via API.
+     * LDAP Sync Users
      *
+     * @group Users
      * @author A. Gianotto <snipe@snipe.net>
      * @since 8.2.2
      *

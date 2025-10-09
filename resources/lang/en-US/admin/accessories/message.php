@@ -5,6 +5,7 @@ return array(
     'does_not_exist' => 'The accessory [:id] does not exist.',
     'not_found' => 'That accessory was not found.',
     'assoc_users'	 => 'This accessory currently has :count items checked out to users. Please check in the accessories and and try again. ',
+    'invalid_category_type' => 'The category is not an accessory category.',
 
     'create' => array(
         'error'   => 'The accessory was not created, please try again.',

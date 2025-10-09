@@ -23,11 +23,26 @@ use Illuminate\Support\Collection;
 class LocationsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Locations
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Locations
+     * @queryParam search string Search term to filter results. Example: Headquarters
+     * @queryParam name string Filter by exact location name. Example: Headquarters
+     * @queryParam address string Filter by exact address. Example: 123 Main St
+     * @queryParam address2 string Filter by exact address2. Example: Suite 100
+     * @queryParam city string Filter by exact city. Example: Springfield
+     * @queryParam zip string Filter by exact zip code. Example: 12345
+     * @queryParam country string Filter by exact country. Example: USA
+     * @queryParam manager_id integer Filter by exact manager (user) ID. Example: 1
+     * @queryParam company_id integer Filter by exact company ID. Example: 1
+     * @queryParam parent_id integer Filter by exact parent location ID. Example: 1
+     * @queryParam status string Filter by location status. Allowed values: active, deleted. Example: active
+     * @queryParam sort string Column to sort results by. Allowed values: accessorries_count, address, address2, assets_count, assigned_assets_count, rtd_assets_count, accessories_count, assigned_accessories_count, components_count, consumables_count, users_count, children_count, city, country, created_at, currency, id, image, ldap_ou, company_id, manager_id, name, rtd_assets_count, state, updated_at, zip. Default: created_at. Example: name
+     * @queryParam order string Order of sorted results. Allowed values: asc, desc. Default: desc. Example: asc
+     *
      * @return \Illuminate\Http\Response
+     * @since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function index(Request $request) : JsonResponse | array
     {
@@ -152,8 +167,6 @@ class LocationsController extends Controller
         $order = $request->input('order') === 'asc' ? 'asc' : 'desc';
         $sort = in_array($request->input('sort'), $allowed_columns) ? $request->input('sort') : 'created_at';
 
-
-
         switch ($request->input('sort')) {
             case 'parent':
                 $locations->OrderParent($order);
@@ -178,8 +191,9 @@ class LocationsController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Create Location
      *
+     * @group Locations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -208,8 +222,9 @@ class LocationsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Location
      *
+     * @group Locations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -252,8 +267,9 @@ class LocationsController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Update Location
      *
+     * @group Locations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -295,7 +311,13 @@ class LocationsController extends Controller
         return response()->json(Helper::formatStandardApiResponse('error', null, $location->getErrors()));
     }
 
-
+    /**
+     * Show Assets with Default Location
+     *
+     * @group Locations
+     * @author [A. Gianotto] [<snipe@snipe.net>]
+     * @param  int  $id
+     */
     public function assets(Request $request, Location $location) : JsonResponse | array
     {
         $this->authorize('view', Asset::class);
@@ -305,6 +327,13 @@ class LocationsController extends Controller
         return (new AssetsTransformer)->transformAssets($assets, $assets->count(), $request);
     }
 
+    /**
+     * Show Assets Assigned to Location
+     *
+     * @group Locations
+     * @author [A. Gianotto] [<snipe@snipe.net>]
+     * @param  int  $id
+     */
     public function assignedAssets(Request $request, Location $location) : JsonResponse | array
     {
         $this->authorize('view', Asset::class);
@@ -314,6 +343,13 @@ class LocationsController extends Controller
         return (new AssetsTransformer)->transformAssets($assets, $assets->count(), $request);
     }
 
+    /**
+     * Show Accessories Assigned to Location
+     *
+     * @group Locations
+     * @author [A. Gianotto] [<snipe@snipe.net>]
+     * @param  int  $id
+     */
     public function assignedAccessories(Request $request, Location $location) : JsonResponse | array
     {
         $this->authorize('view', Accessory::class);
@@ -329,8 +365,9 @@ class LocationsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Location
      *
+     * @group Locations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -384,6 +421,7 @@ class LocationsController extends Controller
      * Recursion still sucks, but I guess he doesn't have to get in the
      * sea... this time.
      *
+     * @group Locations
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer

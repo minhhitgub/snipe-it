@@ -15,8 +15,17 @@ use Illuminate\Http\JsonResponse;
 class LicensesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Licenses
      *
+     * @group Licenses
+     * @queryParam status string Filter by license status. Options: active, inactive, expiring Example: ?status=active
+     * @queryParam company_id integer Filter by exact company ID. Example: 1
+     * @queryParam name string Filter by exact license name. Example: Microsoft 365
+     * @queryParam product_key string Filter by exact product key. Example: W269N
+     * @queryParam order_number string Filter by exact order number. Example: 12345
+     * @queryParam purchase_order string Filter by exact purchase order. Example: PO12345
+     * @queryParam license_name string Filter by exact licensee name. Example: John Doe
+     * @queryParam license_email string Filter by exact licensee email. Example: john.d
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      *
@@ -166,8 +175,9 @@ class LicensesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create License
      *
+     * @group Licenses
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \Illuminate\Http\Request  $request
@@ -186,8 +196,9 @@ class LicensesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show License
      *
+     * @group Licenses
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param  int  $id
      */
@@ -201,8 +212,9 @@ class LicensesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update License
      *
+     * @group Licenses
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \Illuminate\Http\Request  $request
@@ -224,8 +236,9 @@ class LicensesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete License
      *
+     * @group Licenses
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -253,8 +266,9 @@ class LicensesController extends Controller
     }
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Licenses
      * @see \App\Http\Transformers\SelectlistTransformer
      */
     public function selectlist(Request $request) : array

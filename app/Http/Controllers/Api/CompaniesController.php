@@ -15,8 +15,9 @@ use Illuminate\Http\JsonResponse;
 class CompaniesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Companies
      *
+     * @group Companies
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -90,11 +91,12 @@ class CompaniesController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Create Company
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Companies
      * @param  \App\Http\Requests\ImageUploadRequest $request
+     *@since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function store(ImageUploadRequest $request) : JsonResponse
     {
@@ -112,11 +114,12 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Company
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Companies
      * @param  int  $id
+     * @since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function show($id) : array
     {
@@ -129,12 +132,13 @@ class CompaniesController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Update Company
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Companies
      * @param  \App\Http\Requests\ImageUploadRequest  $request
      * @param  int  $id
+     *@author [A. Gianotto] [<snipe@snipe.net>]
+     * @since [v4.0]
      */
     public function update(ImageUploadRequest $request, $id) : JsonResponse
     {
@@ -154,11 +158,12 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Company
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Companies
      * @param  int  $id
+     * @since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function destroy($id) : JsonResponse
     {
@@ -177,8 +182,9 @@ class CompaniesController extends Controller
     }
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Companies
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer

@@ -448,5 +448,7 @@ return [
   */
 
     'escape_formulas' => env('CSV_ESCAPE_FORMULAS', true),
-    
+
+
+    'validation_status_code' => env('API_VALIDATION_HTTP_CODE', 200),
 ];

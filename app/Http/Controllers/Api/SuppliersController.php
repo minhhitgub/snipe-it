@@ -15,11 +15,30 @@ use Illuminate\Http\JsonResponse;
 class SuppliersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Suppliers
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Suppliers
+     * @queryParam search string Search term to filter results. Example: Acme
+     * @queryParam name string Filter by exact supplier name. Example: Acme Corp
+     * @queryParam address string Filter by exact address. Example: 123 Main St
+     * @queryParam address2 string Filter by exact address2. Example: Suite 100
+     * @queryParam city string Filter by exact city. Example: Springfield
+     * @queryParam state string Filter by exact state. Example: IL
+     * @queryParam zip string Filter by exact zip code. Example: 62701
+     * @queryParam country string Filter by exact country. Example: USA
+     * @queryParam phone string Filter by exact phone number. Example: 555-1234
+     * @queryParam fax string Filter by exact fax number. Example: 555-5678
+     * @queryParam email string Filter by exact email address. Example: info@example.org
+     * @queryParam url string Filter by exact URL. Example: http://example.com
+     * @queryParam notes string Filter by exact notes. Example: This is a note.
+     * @queryParam sort string Column to sort results by. Allowed values: id, name, address, address2, city, state, country, zip, phone, contact, fax, email, image, assets_count, licenses_count, accessories_count, components_count, consumables_count, url, notes. Default: created_at. Example: name
+     * @queryParam order string Order of sorted results. Allowed values: asc, desc. Default: desc. Example: asc
+     * @queryParam offset integer Offset/starting position of the results. Default: 0. Example: 0
+     * @queryParam limit integer Limit the number of results returned. Default: 25. Maximum: 100. Example: 50
+     * @see SuppliersController::getIndex()
      * @return \Illuminate\Http\Response
+     * @since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function index(Request $request): array
     {
@@ -126,8 +145,9 @@ class SuppliersController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Create Supplier
      *
+     * @group Suppliers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -147,8 +167,9 @@ class SuppliersController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Supplier
      *
+     * @group Suppliers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -163,8 +184,9 @@ class SuppliersController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Update Supplier
      *
+     * @group Suppliers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -185,8 +207,9 @@ class SuppliersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Supplier
      *
+     * @group Suppliers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -216,8 +239,9 @@ class SuppliersController extends Controller
     }
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Suppliers
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer

@@ -24,7 +24,10 @@ use Illuminate\Http\JsonResponse;
 class CustomFieldsetsController extends Controller
 {
     /**
-     * Shows the given fieldset and its fields
+     * List Fieldsets
+     *
+     * @group Custom Fields
+     * @subgroup Custom Fieldsets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @author [Josh Gibson]
      * @param int $id
@@ -39,10 +42,13 @@ class CustomFieldsetsController extends Controller
     }
 
     /**
-     * Shows the given fieldset and its fields
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @author [Josh Gibson]
+     * Show Fieldset and Fields
+     *
+     * @group Custom Fields
+     * @subgroup Custom Fieldsets
      * @param int $id
+     * @author [Josh Gibson]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v1.8]
      */
     public function show($id) : JsonResponse | array
@@ -56,12 +62,14 @@ class CustomFieldsetsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Fieldset
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Custom Fields
+     * @subgroup Custom Fieldsets
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     *@author [A. Gianotto] [<snipe@snipe.net>]
+     * @since [v4.0]
      */
     public function update(Request $request, $id) : JsonResponse
     {
@@ -77,11 +85,13 @@ class CustomFieldsetsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create Fieldset
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Custom Fields
+     * @subgroup Custom Fieldsets
      * @param  \Illuminate\Http\Request  $request
+     *@since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function store(Request $request) : JsonResponse
     {
@@ -109,8 +119,10 @@ class CustomFieldsetsController extends Controller
     }
 
     /**
-     * Delete a custom fieldset.
+     * Delete Fieldset
      *
+     * @group Custom Fields
+     * @subgroup Custom Fieldsets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -134,12 +146,14 @@ class CustomFieldsetsController extends Controller
     }
 
     /**
-     * Return JSON containing a list of fields belonging to a fieldset.
+     * Show Fields in Fieldset
      *
-     * @author [V. Cordes] [<volker@fdatek.de>]
-     * @since [v4.1.10]
+     * @group Custom Fields
+     * @subgroup Custom Fieldsets
      * @param $fieldsetId
      * @return string JSON
+     * @author [V. Cordes] [<volker@fdatek.de>]
+     * @since [v4.1.10]
      */
     public function fields($id) : array
     {
@@ -151,9 +165,10 @@ class CustomFieldsetsController extends Controller
     }
 
     /**
-     * Return JSON containing a list of fields belonging to a fieldset with the
-     * default values for a given model
+     * Fields in Fieldset with Default Values for Model
      *
+     * @group Custom Fields
+     * @subgroup Custom Fieldsets
      * @param $modelId
      * @param $fieldsetId
      * @return string JSON

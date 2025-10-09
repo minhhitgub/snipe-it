@@ -15,8 +15,10 @@ use Illuminate\Http\Request;
 class LicenseSeatsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List License Seats
      *
+     * @group Licenses
+     * @subgroup License Seats
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $licenseId
      */
@@ -68,8 +70,10 @@ class LicenseSeatsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show License Seat
      *
+     * @group Licenses
+     * @subgroup License Seats
      * @param  int  $licenseId
      * @param  int  $seatId
      */
@@ -91,8 +95,10 @@ class LicenseSeatsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update License Seat
      *
+     * @group Licenses
+     * @subgroup License Seats
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $licenseId
      * @param  int  $seatId

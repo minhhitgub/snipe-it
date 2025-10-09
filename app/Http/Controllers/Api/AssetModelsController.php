@@ -25,8 +25,9 @@ use Illuminate\Http\JsonResponse;
 class AssetModelsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Models
      *
+     * @group Models
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -172,8 +173,9 @@ class AssetModelsController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Create Model
      *
+     * @group Models
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\StoreAssetModelRequest  $request
@@ -194,7 +196,7 @@ class AssetModelsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Model
      *
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
@@ -209,8 +211,9 @@ class AssetModelsController extends Controller
     }
 
     /**
-     * Display the specified resource's assets
+     * List Assets in Model
      *
+     * @group Models
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -225,8 +228,9 @@ class AssetModelsController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Update Model
      *
+     * @group Models
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -261,8 +265,9 @@ class AssetModelsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Model
      *
+     * @group Models
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -291,8 +296,9 @@ class AssetModelsController extends Controller
     }
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist of Models
      *
+     * @group Models
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer

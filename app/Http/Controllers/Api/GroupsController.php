@@ -15,6 +15,7 @@ class GroupsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @group User Groups
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -65,8 +66,9 @@ class GroupsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create Group
      *
+     * @group User Groups
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \Illuminate\Http\Request  $request
@@ -92,8 +94,9 @@ class GroupsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Group
      *
+     * @group User Groups
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -106,8 +109,9 @@ class GroupsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Group
      *
+     * @group User Groups
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \Illuminate\Http\Request  $request
@@ -132,6 +136,7 @@ class GroupsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @group User Groups
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id

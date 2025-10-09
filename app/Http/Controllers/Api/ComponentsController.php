@@ -20,8 +20,9 @@ use Carbon\Carbon;
 class ComponentsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Categories
      *
+     * @group Components
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      *
@@ -151,8 +152,9 @@ class ComponentsController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Create Component
      *
+     * @group Components
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -172,8 +174,9 @@ class ComponentsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Component
      *
+     * @group Components
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param  int  $id
      */
@@ -188,8 +191,9 @@ class ComponentsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Component
      *
+     * @group Components
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param   \App\Http\Requests\ImageUploadRequest  $request
@@ -211,8 +215,9 @@ class ComponentsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Component
      *
+     * @group Components
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -233,8 +238,9 @@ class ComponentsController extends Controller
     }
 
     /**
-     * Display all assets attached to a component
+     * Component Assets
      *
+     * @group Components
      * @author [A. Bergamasco] [@vjandrea]
      * @since [v4.0]
      * @param Request $request
@@ -274,10 +280,10 @@ class ComponentsController extends Controller
 
 
     /**
-     * Validate and checkout the component.
+     * Checkout Component
      *
+     * @group Components
      * @author [A. Gianotto] [<snipe@snipe.net>]
-     * t
      * @since [v5.1.8]
      * @param Request $request
      * @param int $componentId
@@ -329,8 +335,9 @@ class ComponentsController extends Controller
     }
 
     /**
-     * Validate and store checkin data.
+     * Checkin Component
      *
+     * @group Components
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v5.1.8]
      * @param Request $request

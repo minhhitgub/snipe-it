@@ -19,12 +19,14 @@ use Illuminate\Support\Facades\Log;
 class NotesController extends Controller
 {
     /**
-     * Retrieve a list of manual notes (action logs) for a given asset.
+     * List Notes
      *
      * Checks authorization to view assets, attempts to find the asset by ID,
      * and fetches related action log entries of type 'note added', including
      * user information for each note. Returns a JSON response with the notes or errors.
      *
+     * @group Notes
+     * @subgroup Assets
      * @param  \Illuminate\Http\Request  $request  The incoming HTTP request.
      * @param  Asset  $asset  The ID of the asset whose notes to retrieve.
      * @return \Illuminate\Http\JsonResponse
@@ -59,12 +61,14 @@ class NotesController extends Controller
     }
     
     /**
-     * Store a manual note on a specified asset and log the action.
+     * Store Note
      *
      * Checks authorization for updating assets, validates the presence of the 'note',
      * attempts to find the asset by ID, and creates a new ActionLog entry if successful.
      * Returns JSON responses indicating success or failure with appropriate HTTP status codes.
      *
+     * @group Notes
+     * @subgroup Assets
      * @param  \Illuminate\Http\Request  $request  The incoming HTTP request containing the 'note'.
      * @param  Asset  $asset  The ID of the asset to attach the note to.
      * @return \Illuminate\Http\JsonResponse

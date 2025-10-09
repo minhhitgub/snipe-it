@@ -13,8 +13,9 @@ use Illuminate\Http\JsonResponse;
 class LabelsController extends Controller
 {
     /**
-     * Returns JSON listing of all labels.
+     * List Labels
      *
+     * @group Labels
      * @author Grant Le Roux <grant.leroux+snipe-it@gmail.com>
      */
     public function index(Request $request) : JsonResponse | array
@@ -45,8 +46,9 @@ class LabelsController extends Controller
     }
 
     /**
-     * Returns JSON with information about a label for detail view.
+     * Show Label
      *
+     * @group Labels
      * @author Grant Le Roux <grant.leroux+snipe-it@gmail.com>
      * @param  string  $labelName
      */

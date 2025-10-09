@@ -1,0 +1,458 @@
+name: Suppliers
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/suppliers/selectlist
+    metadata:
+      groupName: Suppliers
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Selectlist
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=BR6PeveVGsilxq1FP5fT6WAioeCFDL1gUs6Ym9rZ; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/suppliers
+    metadata:
+      groupName: Suppliers
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List Suppliers'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        name: search
+        description: 'Search term to filter results.'
+        required: false
+        example: Acme
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      name:
+        name: name
+        description: 'Filter by exact supplier name.'
+        required: false
+        example: 'Acme Corp'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      address:
+        name: address
+        description: 'Filter by exact address.'
+        required: false
+        example: '123 Main St'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      address2:
+        name: address2
+        description: 'Filter by exact address2.'
+        required: false
+        example: 'Suite 100'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      city:
+        name: city
+        description: 'Filter by exact city.'
+        required: false
+        example: Springfield
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      state:
+        name: state
+        description: 'Filter by exact state.'
+        required: false
+        example: IL
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      zip:
+        name: zip
+        description: 'Filter by exact zip code.'
+        required: false
+        example: '62701'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      country:
+        name: country
+        description: 'Filter by exact country.'
+        required: false
+        example: USA
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      phone:
+        name: phone
+        description: 'Filter by exact phone number.'
+        required: false
+        example: 555-1234
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      fax:
+        name: fax
+        description: 'Filter by exact fax number.'
+        required: false
+        example: 555-5678
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Filter by exact email address.'
+        required: false
+        example: info@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      url:
+        name: url
+        description: 'Filter by exact URL.'
+        required: false
+        example: 'http://example.com'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      notes:
+        name: notes
+        description: 'Filter by exact notes.'
+        required: false
+        example: 'This is a note.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      sort:
+        name: sort
+        description: 'Column to sort results by. Allowed values: id, name, address, address2, city, state, country, zip, phone, contact, fax, email, image, assets_count, licenses_count, accessories_count, components_count, consumables_count, url, notes. Default: created_at.'
+        required: false
+        example: name
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      order:
+        name: order
+        description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+        required: false
+        example: asc
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      offset:
+        name: offset
+        description: 'Offset/starting position of the results. Default: 0.'
+        required: false
+        example: 0
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      limit:
+        name: limit
+        description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
+        required: false
+        example: 50
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      search: Acme
+      name: 'Acme Corp'
+      address: '123 Main St'
+      address2: 'Suite 100'
+      city: Springfield
+      state: IL
+      zip: '62701'
+      country: USA
+      phone: 555-1234
+      fax: 555-5678
+      email: info@example.org
+      url: 'http://example.com'
+      notes: 'This is a note.'
+      sort: name
+      order: asc
+      offset: 0
+      limit: 50
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=GIWthbIGeD8hOuFNzuVJJexwmXJT7t1Lu2iovTWr; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/suppliers
+    metadata:
+      groupName: Suppliers
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create Supplier'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/suppliers/{id}'
+    metadata:
+      groupName: Suppliers
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show Supplier'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the supplier.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=u3CtCeJlscwNdonOQgzzRAz7L5b7PUJA5QGFugkY; expires=Sat, 18 Oct 2025 00:19:29 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/suppliers/{id}'
+    metadata:
+      groupName: Suppliers
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update Supplier'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the supplier.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/suppliers/{id}'
+    metadata:
+      groupName: Suppliers
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete Supplier'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the supplier.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

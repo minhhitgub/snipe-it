@@ -14,8 +14,9 @@ use Illuminate\Http\JsonResponse;
 class CustomFieldsController extends Controller
 {
     /**
-     * Reorder the custom fields within a fieldset
+     * List Custom Fields
      *
+     * @group Custom Fields
      * @author [Brady Wetherington] [<uberbrady@gmail.com>]
      * @param  int  $id
      * @since [v3.0]
@@ -30,7 +31,9 @@ class CustomFieldsController extends Controller
     }
 
     /**
-     * Shows the given field
+     * Show Field
+     *
+     * @group Custom Fields
      * @author [V. Cordes] [<volker@fdatek.de>]
      * @param int $id
      * @since [v4.1.10]
@@ -46,8 +49,9 @@ class CustomFieldsController extends Controller
     }
 
     /**
-     * Update the specified field
+     * Update Field
      *
+     * @group Custom Fields
      * @author [V. Cordes] [<volker@fdatek.de>]
      * @since [v4.1.10]
      * @param  \Illuminate\Http\Request  $request
@@ -80,8 +84,9 @@ class CustomFieldsController extends Controller
     }
 
     /**
-     * Store a newly created field.
+     * Create Field
      *
+     * @group Custom Fields
      * @author [V. Cordes] [<volker@fdatek.de>]
      * @since [v4.1.10]
      * @param  \Illuminate\Http\Request  $request
@@ -112,6 +117,12 @@ class CustomFieldsController extends Controller
         return response()->json(Helper::formatStandardApiResponse('error', null, $field->getErrors()));
     }
 
+    /**
+     * Reorder Fields
+     *
+     * @group Custom Fields
+     * @param  \Illuminate\Http\Request  $request
+     */
     public function postReorder(Request $request, $id)
     {
         $fieldset = CustomFieldset::find($id);
@@ -134,6 +145,12 @@ class CustomFieldsController extends Controller
         return $fieldset->fields()->sync($fields);
     }
 
+    /**
+     * Add Field to Fieldset
+     *
+     * @group Custom Fields
+     * @param  \Illuminate\Http\Request  $request
+     */
     public function associate(Request $request, $field_id) : JsonResponse
     {
         $this->authorize('update', CustomFieldset::class);
@@ -153,6 +170,12 @@ class CustomFieldsController extends Controller
         return response()->json(Helper::formatStandardApiResponse('success', $fieldset, trans('admin/custom_fields/message.fieldset.update.success')));
     }
 
+    /**
+     * Remove Field from Fieldset
+     *
+     * @group Custom Fields
+     * @param  \Illuminate\Http\Request  $request
+     */
     public function disassociate(Request $request, $field_id) : JsonResponse
     {
         $this->authorize('update', CustomFieldset::class);
@@ -172,8 +195,9 @@ class CustomFieldsController extends Controller
     }
 
     /**
-     * Delete a custom field.
+     * Delete Field
      *
+     * @group Custom Fields
      * @author [Brady Wetherington] [<uberbrady@gmail.com>]
      * @since [v1.8]
      */

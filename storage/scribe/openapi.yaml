@@ -1,0 +1,6213 @@
+openapi: 3.0.3
+info:
+  title: 'Evolução local de snipe-it API Documentation'
+  description: 'This documentation aims to provide all the information you need to work with the Snipe-IT API.'
+  version: 1.0.0
+servers:
+  -
+    url: 'https://snipe-it.test'
+tags:
+  -
+    name: Accessories
+    description: ''
+  -
+    name: Assets
+    description: ''
+  -
+    name: Categories
+    description: ''
+  -
+    name: Companies
+    description: ''
+  -
+    name: Components
+    description: ''
+  -
+    name: Consumables
+    description: ''
+  -
+    name: 'Custom Fields'
+    description: ''
+  -
+    name: Departments
+    description: ''
+  -
+    name: Depreciations
+    description: ''
+  -
+    name: Files
+    description: ''
+  -
+    name: Imports
+    description: ''
+  -
+    name: Labels
+    description: ''
+  -
+    name: Licenses
+    description: ''
+  -
+    name: Locations
+    description: ''
+  -
+    name: Maintenances
+    description: ''
+  -
+    name: Manufacturers
+    description: ''
+  -
+    name: Misc
+    description: ''
+  -
+    name: Models
+    description: ''
+  -
+    name: Notes
+    description: ''
+  -
+    name: 'Status Labels'
+    description: ''
+  -
+    name: Suppliers
+    description: ''
+  -
+    name: 'User Groups'
+    description: ''
+  -
+    name: Users
+    description: ''
+paths:
+  '/api/v1/accessories/{accessory}/checkedout':
+    get:
+      summary: 'Show Accessory Checkouts'
+      operationId: showAccessoryCheckouts
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Accessories
+    parameters:
+      -
+        in: path
+        name: accessory
+        description: 'The accessory.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/accessories/{accessory_id}/checkout':
+    post:
+      summary: 'Checkout Accessory'
+      operationId: checkoutAccessory
+      description: "If Slack is enabled and/or asset acceptance is enabled, it will also\ntrigger a Slack message and send an email."
+      parameters: []
+      responses: {  }
+      tags:
+        - Accessories
+    parameters:
+      -
+        in: path
+        name: accessory_id
+        description: 'The ID of the accessory.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/accessories:
+    get:
+      summary: 'List accessories'
+      operationId: listAccessories
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'A search term to filter results by.'
+          example: keyboard
+          required: false
+          schema:
+            type: string
+            description: 'A search term to filter results by.'
+            example: keyboard
+            nullable: false
+        -
+          in: query
+          name: 'filter[<fieldname>]'
+          description: 'A field to filter by. Example'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'A field to filter by. Example'
+            example: architecto
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'Filter by company ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by company ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: category_id
+          description: 'Filter by category ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by category ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: manufacturer_id
+          description: 'Filter by manufacturer ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by manufacturer ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: supplier_id
+          description: 'Filter by supplier ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by supplier ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: location_id
+          description: 'Filter by location ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by location ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: notes
+          description: 'Filter by notes.'
+          example: 'For office use only'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by notes.'
+            example: 'For office use only'
+            nullable: false
+        -
+          in: query
+          name: offset
+          description: 'The number of items to skip before starting to collect the result set.'
+          example: 0
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items to skip before starting to collect the result set.'
+            example: 0
+            nullable: false
+        -
+          in: query
+          name: limit
+          description: 'The number of items to return.'
+          example: 50
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items to return.'
+            example: 50
+            nullable: false
+        -
+          in: query
+          name: sort
+          description: 'The field to sort by.'
+          example: created_at
+          required: false
+          schema:
+            type: string
+            description: 'The field to sort by.'
+            example: created_at
+            nullable: false
+        -
+          in: query
+          name: order
+          description: 'The order to sort by.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'The order to sort by.'
+            example: desc
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Accessories
+    post:
+      summary: 'Create Accessory'
+      operationId: createAccessory
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Accessories
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the accessory.'
+                  example: 'Apple Bluetooth Keyboard'
+                  nullable: false
+                qty:
+                  type: integer
+                  description: 'The number of accessories to create.'
+                  example: 10
+                  nullable: false
+                category_id:
+                  type: integer
+                  description: 'The ID of the category to assign this accessory to.'
+                  example: 1
+                  nullable: false
+                image:
+                  type: string
+                  format: binary
+                  description: ''
+                  nullable: false
+              required:
+                - name
+                - qty
+                - category_id
+  '/api/v1/accessories/{id}':
+    get:
+      summary: 'Show Accessory'
+      operationId: showAccessory
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Accessories
+    put:
+      summary: 'Update accessory.'
+      operationId: updateAccessory
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Accessories
+    delete:
+      summary: 'Delete Accessory'
+      operationId: deleteAccessory
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Accessories
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the accessory.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/account/requestable/hardware:
+    get:
+      summary: 'Show Requestable Assets'
+      operationId: showRequestableAssets
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+  /api/v1/reports/depreciation:
+    get:
+      summary: 'List Assets'
+      operationId: listAssets
+      description: ''
+      parameters:
+        -
+          in: query
+          name: action
+          description: 'The action to filter by.'
+          example: 'audits, checkins'
+          required: false
+          schema:
+            type: string
+            description: 'The action to filter by.'
+            example: 'audits, checkins'
+            nullable: false
+        -
+          in: query
+          name: upcoming_status
+          description: 'The status to filter by.'
+          example: 'due, overdue, due-or-overdue'
+          required: false
+          schema:
+            type: string
+            description: 'The status to filter by.'
+            example: 'due, overdue, due-or-overdue'
+            nullable: false
+        -
+          in: query
+          name: status
+          description: 'The asset status to filter by.'
+          example: 'RTD, Deployed, Pending, Undeployable, Archived, Requestable'
+          required: false
+          schema:
+            type: string
+            description: 'The asset status to filter by.'
+            example: 'RTD, Deployed, Pending, Undeployable, Archived, Requestable'
+            nullable: false
+        -
+          in: query
+          name: status_id
+          description: 'The asset status ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The asset status ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: asset_tag
+          description: 'The asset tag to filter by.'
+          example: ABC123
+          required: false
+          schema:
+            type: string
+            description: 'The asset tag to filter by.'
+            example: ABC123
+            nullable: false
+        -
+          in: query
+          name: serial
+          description: 'The serial number to filter by.'
+          example: SN123456
+          required: false
+          schema:
+            type: string
+            description: 'The serial number to filter by.'
+            example: SN123456
+            nullable: false
+        -
+          in: query
+          name: requestable
+          description: 'Filter by requestable assets.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Filter by requestable assets.'
+            example: true
+            nullable: false
+        -
+          in: query
+          name: model_id
+          description: 'int|array The model ID or IDs to filter by.'
+          example: '1 or model_id[]=1&model_id[]=2'
+          required: false
+          schema:
+            type: string
+            description: 'int|array The model ID or IDs to filter by.'
+            example: '1 or model_id[]=1&model_id[]=2'
+            nullable: false
+        -
+          in: query
+          name: category_id
+          description: 'The category ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The category ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: location_id
+          description: 'The location ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The location ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: rtd_location_id
+          description: 'The RTD location ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The RTD location ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: supplier_id
+          description: 'The supplier ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The supplier ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: asset_eol_date
+          description: 'date The asset end-of-life date to filter by.'
+          example: '2023-12-31'
+          required: false
+          schema:
+            type: string
+            description: 'date The asset end-of-life date to filter by.'
+            example: '2023-12-31'
+            nullable: false
+        -
+          in: query
+          name: assigned_to
+          description: 'The user ID or department ID the asset is assigned to.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The user ID or department ID the asset is assigned to.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: assigned_type
+          description: "The type of assignment, either 'user' or 'department'."
+          example: user
+          required: false
+          schema:
+            type: string
+            description: "The type of assignment, either 'user' or 'department'."
+            example: user
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'The company ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The company ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: manufacturer_id
+          description: 'The manufacturer ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The manufacturer ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: depreciation_id
+          description: 'The depreciation ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The depreciation ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: byod
+          description: 'Filter by BYOD assets.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Filter by BYOD assets.'
+            example: true
+            nullable: false
+        -
+          in: query
+          name: order_number
+          description: 'The order number to filter by.'
+          example: PO12345
+          required: false
+          schema:
+            type: string
+            description: 'The order number to filter by.'
+            example: PO12345
+            nullable: false
+        -
+          in: query
+          name: search
+          description: 'A text string to search for.'
+          example: laptop
+          required: false
+          schema:
+            type: string
+            description: 'A text string to search for.'
+            example: laptop
+            nullable: false
+        -
+          in: query
+          name: filter
+          description: 'A JSON object of key/value pairs to filter by.'
+          example: '{"status_label":"RTD","location":"Headquarters"}'
+          required: false
+          schema:
+            type: string
+            description: 'A JSON object of key/value pairs to filter by.'
+            example: '{"status_label":"RTD","location":"Headquarters"}'
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+  /api/v1/hardware/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+  '/api/v1/hardware/bytag/{tag}':
+    get:
+      summary: 'Lookup by Tag'
+      operationId: lookupByTag
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: tag
+        description: ''
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/hardware/bytag/{any}':
+    get:
+      summary: 'Lookup by Tag'
+      operationId: lookupByTag
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: any
+        description: ''
+        example: '|{+-0p'
+        required: true
+        schema:
+          type: string
+  '/api/v1/hardware/bytag/{any}/checkout':
+    post:
+      summary: 'Checkout by Asset Tag'
+      operationId: checkoutByAssetTag
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: any
+        description: ''
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/hardware/bytag/{any}/checkin':
+    post:
+      summary: 'Checkin by Asset Tag'
+      operationId: checkinByAssetTag
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: any
+        description: ''
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/hardware/checkinbytag:
+    post:
+      summary: 'Checkin by Asset Tag'
+      operationId: checkinByAssetTag
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+  '/api/v1/hardware/byserial/{any}':
+    get:
+      summary: 'Lookup by Serial'
+      operationId: lookupBySerial
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: any
+        description: ''
+        example: '|{+-0p'
+        required: true
+        schema:
+          type: string
+  '/api/v1/hardware/{action}/{upcoming_status}':
+    get:
+      summary: 'List Assets'
+      operationId: listAssets
+      description: ''
+      parameters:
+        -
+          in: query
+          name: action
+          description: 'The action to filter by.'
+          example: 'audits, checkins'
+          required: false
+          schema:
+            type: string
+            description: 'The action to filter by.'
+            example: 'audits, checkins'
+            nullable: false
+        -
+          in: query
+          name: upcoming_status
+          description: 'The status to filter by.'
+          example: 'due, overdue, due-or-overdue'
+          required: false
+          schema:
+            type: string
+            description: 'The status to filter by.'
+            example: 'due, overdue, due-or-overdue'
+            nullable: false
+        -
+          in: query
+          name: status
+          description: 'The asset status to filter by.'
+          example: 'RTD, Deployed, Pending, Undeployable, Archived, Requestable'
+          required: false
+          schema:
+            type: string
+            description: 'The asset status to filter by.'
+            example: 'RTD, Deployed, Pending, Undeployable, Archived, Requestable'
+            nullable: false
+        -
+          in: query
+          name: status_id
+          description: 'The asset status ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The asset status ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: asset_tag
+          description: 'The asset tag to filter by.'
+          example: ABC123
+          required: false
+          schema:
+            type: string
+            description: 'The asset tag to filter by.'
+            example: ABC123
+            nullable: false
+        -
+          in: query
+          name: serial
+          description: 'The serial number to filter by.'
+          example: SN123456
+          required: false
+          schema:
+            type: string
+            description: 'The serial number to filter by.'
+            example: SN123456
+            nullable: false
+        -
+          in: query
+          name: requestable
+          description: 'Filter by requestable assets.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Filter by requestable assets.'
+            example: true
+            nullable: false
+        -
+          in: query
+          name: model_id
+          description: 'int|array The model ID or IDs to filter by.'
+          example: '1 or model_id[]=1&model_id[]=2'
+          required: false
+          schema:
+            type: string
+            description: 'int|array The model ID or IDs to filter by.'
+            example: '1 or model_id[]=1&model_id[]=2'
+            nullable: false
+        -
+          in: query
+          name: category_id
+          description: 'The category ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The category ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: location_id
+          description: 'The location ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The location ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: rtd_location_id
+          description: 'The RTD location ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The RTD location ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: supplier_id
+          description: 'The supplier ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The supplier ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: asset_eol_date
+          description: 'date The asset end-of-life date to filter by.'
+          example: '2023-12-31'
+          required: false
+          schema:
+            type: string
+            description: 'date The asset end-of-life date to filter by.'
+            example: '2023-12-31'
+            nullable: false
+        -
+          in: query
+          name: assigned_to
+          description: 'The user ID or department ID the asset is assigned to.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The user ID or department ID the asset is assigned to.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: assigned_type
+          description: "The type of assignment, either 'user' or 'department'."
+          example: user
+          required: false
+          schema:
+            type: string
+            description: "The type of assignment, either 'user' or 'department'."
+            example: user
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'The company ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The company ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: manufacturer_id
+          description: 'The manufacturer ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The manufacturer ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: depreciation_id
+          description: 'The depreciation ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The depreciation ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: byod
+          description: 'Filter by BYOD assets.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Filter by BYOD assets.'
+            example: true
+            nullable: false
+        -
+          in: query
+          name: order_number
+          description: 'The order number to filter by.'
+          example: PO12345
+          required: false
+          schema:
+            type: string
+            description: 'The order number to filter by.'
+            example: PO12345
+            nullable: false
+        -
+          in: query
+          name: search
+          description: 'A text string to search for.'
+          example: laptop
+          required: false
+          schema:
+            type: string
+            description: 'A text string to search for.'
+            example: laptop
+            nullable: false
+        -
+          in: query
+          name: filter
+          description: 'A JSON object of key/value pairs to filter by.'
+          example: '{"status_label":"RTD","location":"Headquarters"}'
+          required: false
+          schema:
+            type: string
+            description: 'A JSON object of key/value pairs to filter by.'
+            example: '{"status_label":"RTD","location":"Headquarters"}'
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: action
+        description: ''
+        example: audit|audits|checkins
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: upcoming_status
+        description: ''
+        example: due|overdue|due-or-overdue
+        required: true
+        schema:
+          type: string
+  /api/v1/hardware/audit:
+    post:
+      summary: 'Audit Asset'
+      operationId: auditAsset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+  '/api/v1/hardware/{asset_id}/audit':
+    post:
+      summary: 'Audit Asset'
+      operationId: auditAsset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/hardware/{id}/checkin':
+    post:
+      summary: 'Checkin Asset'
+      operationId: checkinAsset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the hardware.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/hardware/{id}/checkout':
+    post:
+      summary: 'Checkout Asset'
+      operationId: checkoutAsset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the hardware.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/hardware/{asset_id}/restore':
+    post:
+      summary: 'Restore Asset'
+      operationId: restoreAsset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/hardware/{asset_id}/assigned/assets':
+    get:
+      summary: 'List Assets Assigned to Asset'
+      operationId: listAssetsAssignedToAsset
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/hardware/{asset_id}/assigned/accessories':
+    get:
+      summary: 'List Accessories Assigned to Asset'
+      operationId: listAccessoriesAssignedToAsset
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/hardware/{asset_id}':
+    patch:
+      summary: 'Update Asset'
+      operationId: updateAsset
+      description: ''
+      parameters:
+        -
+          in: query
+          name: model_id
+          description: 'The model ID to associate the asset with.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The model ID to associate the asset with.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'The company ID to associate the asset with.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The company ID to associate the asset with.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: rtd_location_id
+          description: 'The RTD location ID to associate the asset with.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The RTD location ID to associate the asset with.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: last_audit_date
+          description: 'date The last audit date for the asset.'
+          example: '2023-12-31'
+          required: false
+          schema:
+            type: string
+            description: 'date The last audit date for the asset.'
+            example: '2023-12-31'
+            nullable: false
+        -
+          in: query
+          name: image
+          description: 'file The image file to upload for the asset.'
+          example: (binary)
+          required: false
+          schema:
+            type: string
+            description: 'file The image file to upload for the asset.'
+            example: (binary)
+            nullable: false
+      responses: {  }
+      tags:
+        - Assets
+    put:
+      summary: 'Update Asset'
+      operationId: updateAsset
+      description: ''
+      parameters:
+        -
+          in: query
+          name: model_id
+          description: 'The model ID to associate the asset with.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The model ID to associate the asset with.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'The company ID to associate the asset with.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The company ID to associate the asset with.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: rtd_location_id
+          description: 'The RTD location ID to associate the asset with.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The RTD location ID to associate the asset with.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: last_audit_date
+          description: 'date The last audit date for the asset.'
+          example: '2023-12-31'
+          required: false
+          schema:
+            type: string
+            description: 'date The last audit date for the asset.'
+            example: '2023-12-31'
+            nullable: false
+        -
+          in: query
+          name: image
+          description: 'file The image file to upload for the asset.'
+          example: (binary)
+          required: false
+          schema:
+            type: string
+            description: 'file The image file to upload for the asset.'
+            example: (binary)
+            nullable: false
+      responses: {  }
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/hardware:
+    get:
+      summary: 'List Assets'
+      operationId: listAssets
+      description: ''
+      parameters:
+        -
+          in: query
+          name: action
+          description: 'The action to filter by.'
+          example: 'audits, checkins'
+          required: false
+          schema:
+            type: string
+            description: 'The action to filter by.'
+            example: 'audits, checkins'
+            nullable: false
+        -
+          in: query
+          name: upcoming_status
+          description: 'The status to filter by.'
+          example: 'due, overdue, due-or-overdue'
+          required: false
+          schema:
+            type: string
+            description: 'The status to filter by.'
+            example: 'due, overdue, due-or-overdue'
+            nullable: false
+        -
+          in: query
+          name: status
+          description: 'The asset status to filter by.'
+          example: 'RTD, Deployed, Pending, Undeployable, Archived, Requestable'
+          required: false
+          schema:
+            type: string
+            description: 'The asset status to filter by.'
+            example: 'RTD, Deployed, Pending, Undeployable, Archived, Requestable'
+            nullable: false
+        -
+          in: query
+          name: status_id
+          description: 'The asset status ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The asset status ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: asset_tag
+          description: 'The asset tag to filter by.'
+          example: ABC123
+          required: false
+          schema:
+            type: string
+            description: 'The asset tag to filter by.'
+            example: ABC123
+            nullable: false
+        -
+          in: query
+          name: serial
+          description: 'The serial number to filter by.'
+          example: SN123456
+          required: false
+          schema:
+            type: string
+            description: 'The serial number to filter by.'
+            example: SN123456
+            nullable: false
+        -
+          in: query
+          name: requestable
+          description: 'Filter by requestable assets.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Filter by requestable assets.'
+            example: true
+            nullable: false
+        -
+          in: query
+          name: model_id
+          description: 'int|array The model ID or IDs to filter by.'
+          example: '1 or model_id[]=1&model_id[]=2'
+          required: false
+          schema:
+            type: string
+            description: 'int|array The model ID or IDs to filter by.'
+            example: '1 or model_id[]=1&model_id[]=2'
+            nullable: false
+        -
+          in: query
+          name: category_id
+          description: 'The category ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The category ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: location_id
+          description: 'The location ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The location ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: rtd_location_id
+          description: 'The RTD location ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The RTD location ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: supplier_id
+          description: 'The supplier ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The supplier ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: asset_eol_date
+          description: 'date The asset end-of-life date to filter by.'
+          example: '2023-12-31'
+          required: false
+          schema:
+            type: string
+            description: 'date The asset end-of-life date to filter by.'
+            example: '2023-12-31'
+            nullable: false
+        -
+          in: query
+          name: assigned_to
+          description: 'The user ID or department ID the asset is assigned to.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The user ID or department ID the asset is assigned to.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: assigned_type
+          description: "The type of assignment, either 'user' or 'department'."
+          example: user
+          required: false
+          schema:
+            type: string
+            description: "The type of assignment, either 'user' or 'department'."
+            example: user
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'The company ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The company ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: manufacturer_id
+          description: 'The manufacturer ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The manufacturer ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: depreciation_id
+          description: 'The depreciation ID to filter by.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The depreciation ID to filter by.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: byod
+          description: 'Filter by BYOD assets.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Filter by BYOD assets.'
+            example: true
+            nullable: false
+        -
+          in: query
+          name: order_number
+          description: 'The order number to filter by.'
+          example: PO12345
+          required: false
+          schema:
+            type: string
+            description: 'The order number to filter by.'
+            example: PO12345
+            nullable: false
+        -
+          in: query
+          name: search
+          description: 'A text string to search for.'
+          example: laptop
+          required: false
+          schema:
+            type: string
+            description: 'A text string to search for.'
+            example: laptop
+            nullable: false
+        -
+          in: query
+          name: filter
+          description: 'A JSON object of key/value pairs to filter by.'
+          example: '{"status_label":"RTD","location":"Headquarters"}'
+          required: false
+          schema:
+            type: string
+            description: 'A JSON object of key/value pairs to filter by.'
+            example: '{"status_label":"RTD","location":"Headquarters"}'
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    post:
+      summary: 'Create Asset'
+      operationId: createAsset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+  '/api/v1/hardware/{hardware}':
+    get:
+      summary: 'Show Asset'
+      operationId: showAsset
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    delete:
+      summary: 'Delete Asset'
+      operationId: deleteAsset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: hardware
+        description: 'The hardware.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/hardware/labels:
+    post:
+      summary: 'Generate Label by Asset Tag'
+      operationId: generateLabelByAssetTag
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Assets
+  '/api/v1/categories/{item_type}/selectlist':
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Categories
+    parameters:
+      -
+        in: path
+        name: item_type
+        description: ''
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/categories:
+    get:
+      summary: 'List Categories'
+      operationId: listCategories
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Categories
+    post:
+      summary: 'Create Category'
+      operationId: createCategory
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Categories
+  '/api/v1/categories/{id}':
+    get:
+      summary: 'Show Category'
+      operationId: showCategory
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Categories
+    put:
+      summary: 'Update Category'
+      operationId: updateCategory
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Categories
+    delete:
+      summary: 'Delete Category'
+      operationId: deleteCategory
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Categories
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/companies/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Companies
+  /api/v1/companies:
+    get:
+      summary: 'List Companies'
+      operationId: listCompanies
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Companies
+    post:
+      summary: 'Create Company'
+      operationId: createCompany
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Companies
+  '/api/v1/companies/{id}':
+    get:
+      summary: 'Show Company'
+      operationId: showCompany
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Companies
+    put:
+      summary: 'Update Company'
+      operationId: updateCompany
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Companies
+    delete:
+      summary: 'Delete Company'
+      operationId: deleteCompany
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Companies
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the company.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/components/{component}/assets':
+    get:
+      summary: 'Component Assets'
+      operationId: componentAssets
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Components
+    parameters:
+      -
+        in: path
+        name: component
+        description: 'The component.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  '/api/v1/components/{id}/checkin':
+    post:
+      summary: 'Checkin Component'
+      operationId: checkinComponent
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Components
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the component.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  '/api/v1/components/{id}/checkout':
+    post:
+      summary: 'Checkout Component'
+      operationId: checkoutComponent
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Components
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assigned_to:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the assets table.'
+                  example: architecto
+                  nullable: false
+                assigned_qty:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: false
+              required:
+                - assigned_to
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the component.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  /api/v1/components:
+    get:
+      summary: 'List Categories'
+      operationId: listCategories
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Components
+    post:
+      summary: 'Create Component'
+      operationId: createComponent
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Components
+  '/api/v1/components/{id}':
+    get:
+      summary: 'Show Component'
+      operationId: showComponent
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Components
+    put:
+      summary: 'Update Component'
+      operationId: updateComponent
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Components
+    delete:
+      summary: 'Delete Component'
+      operationId: deleteComponent
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Components
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the component.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  /api/v1/consumables/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Consumables
+  '/api/v1/consumables/{id}/users':
+    get:
+      summary: 'User Assignments'
+      operationId: userAssignments
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Consumables
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the consumable.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/consumables/{consumable}/checkout':
+    post:
+      summary: 'Checkout Consumable'
+      operationId: checkoutConsumable
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Consumables
+    parameters:
+      -
+        in: path
+        name: consumable
+        description: 'The consumable.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/consumables:
+    get:
+      summary: 'List Consumables'
+      operationId: listConsumables
+      description: ''
+      parameters:
+        -
+          in: query
+          name: filter
+          description: 'A JSON encoded array of key/value pairs to filter results by.'
+          example: '{"company":"1","location":"2"}'
+          required: false
+          schema:
+            type: string
+            description: 'A JSON encoded array of key/value pairs to filter results by.'
+            example: '{"company":"1","location":"2"}'
+            nullable: false
+        -
+          in: query
+          name: search
+          description: 'A search term to filter results by.'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'A search term to filter results by.'
+            example: architecto
+            nullable: false
+        -
+          in: query
+          name: name
+          description: 'Filter by exact name.'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact name.'
+            example: architecto
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'Filter by exact company ID.'
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact company ID.'
+            example: 16
+            nullable: false
+        -
+          in: query
+          name: category_id
+          description: 'Filter by exact category ID.'
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact category ID.'
+            example: 16
+            nullable: false
+        -
+          in: query
+          name: model_number
+          description: 'Filter by exact model number.'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact model number.'
+            example: architecto
+            nullable: false
+        -
+          in: query
+          name: manufacturer_id
+          description: 'Filter by exact manufacturer ID.'
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact manufacturer ID.'
+            example: 16
+            nullable: false
+        -
+          in: query
+          name: supplier_id
+          description: 'Filter by exact supplier ID.'
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact supplier ID.'
+            example: 16
+            nullable: false
+        -
+          in: query
+          name: location_id
+          description: 'Filter by exact location ID.'
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact location ID.'
+            example: 16
+            nullable: false
+        -
+          in: query
+          name: notes
+          description: 'Filter by exact notes.'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact notes.'
+            example: architecto
+            nullable: false
+        -
+          in: query
+          name: sort
+          description: 'The column to sort results by. Must be one of the following: id, name, order_number, min_amt, purchase_date, purchase_cost, company, category, model_number, item_no, manufacturer, location, qty, image, company, location, category, supplier, manufacturer. Default is created_at.'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'The column to sort results by. Must be one of the following: id, name, order_number, min_amt, purchase_date, purchase_cost, company, category, model_number, item_no, manufacturer, location, qty, image, company, location, category, supplier, manufacturer. Default is created_at.'
+            example: architecto
+            nullable: false
+        -
+          in: query
+          name: order
+          description: 'The order to sort results by. Must be one of the following: asc, desc. Default is desc.'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'The order to sort results by. Must be one of the following: asc, desc. Default is desc.'
+            example: architecto
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Consumables
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Consumables
+  '/api/v1/consumables/{id}':
+    get:
+      summary: 'Show Consumable'
+      operationId: showConsumable
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Consumables
+    put:
+      summary: 'Update Consumable'
+      operationId: updateConsumable
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Consumables
+    delete:
+      summary: 'Delete Consumable'
+      operationId: deleteConsumable
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Consumables
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the consumable.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/fields/fieldsets/{id}/order':
+    post:
+      summary: 'Reorder Fields'
+      operationId: reorderFields
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the fieldset.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/fields/{field}/associate':
+    post:
+      summary: 'Add Field to Fieldset'
+      operationId: addFieldToFieldset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+    parameters:
+      -
+        in: path
+        name: field
+        description: 'The field.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/fields/{field}/disassociate':
+    post:
+      summary: 'Remove Field from Fieldset'
+      operationId: removeFieldFromFieldset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+    parameters:
+      -
+        in: path
+        name: field
+        description: 'The field.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/fields:
+    get:
+      summary: 'List Custom Fields'
+      operationId: listCustomFields
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Custom Fields'
+    post:
+      summary: 'Create Field'
+      operationId: createField
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+  '/api/v1/fields/{field}':
+    get:
+      summary: 'Show Field'
+      operationId: showField
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Custom Fields'
+    put:
+      summary: 'Update Field'
+      operationId: updateField
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+    delete:
+      summary: 'Delete Field'
+      operationId: deleteField
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+    parameters:
+      -
+        in: path
+        name: field
+        description: 'The field.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/fieldsets/{fieldset}/fields':
+    post:
+      summary: 'Show Fields in Fieldset'
+      operationId: showFieldsInFieldset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+    parameters:
+      -
+        in: path
+        name: fieldset
+        description: 'The fieldset.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/fieldsets/{fieldset}/fields/{model}':
+    post:
+      summary: 'Fields in Fieldset with Default Values for Model'
+      operationId: fieldsInFieldsetWithDefaultValuesForModel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+    parameters:
+      -
+        in: path
+        name: fieldset
+        description: 'The fieldset.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: model
+        description: ''
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/fieldsets:
+    get:
+      summary: 'List Fieldsets'
+      operationId: listFieldsets
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Custom Fields'
+    post:
+      summary: 'Create Fieldset'
+      operationId: createFieldset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+  '/api/v1/fieldsets/{id}':
+    get:
+      summary: 'Show Fieldset and Fields'
+      operationId: showFieldsetAndFields
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Custom Fields'
+    put:
+      summary: 'Update Fieldset'
+      operationId: updateFieldset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+    delete:
+      summary: 'Delete Fieldset'
+      operationId: deleteFieldset
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Custom Fields'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the fieldset.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/departments/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Departments
+  /api/v1/departments:
+    get:
+      summary: 'List Departments'
+      operationId: listDepartments
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'Search term to filter results.'
+          example: IT
+          required: false
+          schema:
+            type: string
+            description: 'Search term to filter results.'
+            example: IT
+            nullable: false
+        -
+          in: query
+          name: name
+          description: 'Filter by exact department name.'
+          example: IT
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact department name.'
+            example: IT
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'Filter by exact company ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact company ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: manager_id
+          description: 'Filter by exact manager (user) ID. Example:'
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact manager (user) ID. Example:'
+            example: 16
+            nullable: false
+        -
+          in: query
+          name: location_id
+          description: 'Filter by exact location ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact location ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: sort
+          description: 'Column to sort results by. Allowed values: id, name, image, users_count, notes, created_at, updated_at, location, manager, company. Default: created_at.'
+          example: name
+          required: false
+          schema:
+            type: string
+            description: 'Column to sort results by. Allowed values: id, name, image, users_count, notes, created_at, updated_at, location, manager, company. Default: created_at.'
+            example: name
+            nullable: false
+        -
+          in: query
+          name: order
+          description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+          example: asc
+          required: false
+          schema:
+            type: string
+            description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+            example: asc
+            nullable: false
+        -
+          in: query
+          name: offset
+          description: 'Offset/starting position of the results. Default: 0.'
+          example: 0
+          required: false
+          schema:
+            type: integer
+            description: 'Offset/starting position of the results. Default: 0.'
+            example: 0
+            nullable: false
+        -
+          in: query
+          name: limit
+          description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
+          example: 50
+          required: false
+          schema:
+            type: integer
+            description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
+            example: 50
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Departments
+    post:
+      summary: 'Create Department'
+      operationId: createDepartment
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Departments
+  '/api/v1/departments/{id}':
+    get:
+      summary: 'Show Department'
+      operationId: showDepartment
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Departments
+    put:
+      summary: 'Update Department'
+      operationId: updateDepartment
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Departments
+    delete:
+      summary: 'Delete Department'
+      operationId: deleteDepartment
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Departments
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the department.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/depreciations:
+    get:
+      summary: 'List Depreciations'
+      operationId: listDepreciations
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Depreciations
+    post:
+      summary: 'Create Depreciation'
+      operationId: createDepreciation
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Depreciations
+  '/api/v1/depreciations/{depreciation_id}':
+    get:
+      summary: 'Show Depreciation'
+      operationId: showDepreciation
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Depreciations
+    put:
+      summary: 'Update Depreciation'
+      operationId: updateDepreciation
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Depreciations
+    delete:
+      summary: 'Delete Depreciation'
+      operationId: deleteDepreciation
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Depreciations
+    parameters:
+      -
+        in: path
+        name: depreciation_id
+        description: 'The ID of the depreciation.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/{object_type}/{id}/files':
+    get:
+      summary: 'List Files for an Object'
+      operationId: listFilesForAnObject
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Files
+    post:
+      summary: 'Upload File to an Object'
+      operationId: uploadFileToAnObject
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Files
+    parameters:
+      -
+        in: path
+        name: object_type
+        description: ''
+        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the {object type}.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/{object_type}/{id}/files/{file_id}':
+    get:
+      summary: 'Display File'
+      operationId: displayFile
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Files
+    parameters:
+      -
+        in: path
+        name: object_type
+        description: ''
+        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the {object type}.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: file_id
+        description: 'The ID of the file.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/{object_type}/{id}/files/{file_id}/delete':
+    delete:
+      summary: 'Delete File'
+      operationId: deleteFile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Files
+    parameters:
+      -
+        in: path
+        name: object_type
+        description: ''
+        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the {object type}.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: file_id
+        description: 'The ID of the file.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/imports/process/{import}':
+    post:
+      summary: 'Process Import'
+      operationId: processImport
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Imports
+    parameters:
+      -
+        in: path
+        name: import
+        description: ''
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/imports:
+    get:
+      summary: 'List Import Files'
+      operationId: listImportFiles
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Imports
+    post:
+      summary: 'Save Import File'
+      operationId: saveImportFile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Imports
+  '/api/v1/imports/{id}':
+    delete:
+      summary: 'Delete Import File'
+      operationId: deleteImportFile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Imports
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the import.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/labels/{name}':
+    get:
+      summary: 'Show Label'
+      operationId: showLabel
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Labels
+    parameters:
+      -
+        in: path
+        name: name
+        description: ''
+        example: '|{+-0p'
+        required: true
+        schema:
+          type: string
+  /api/v1/labels:
+    get:
+      summary: 'List Labels'
+      operationId: listLabels
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Labels
+  /api/v1/licenses/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Licenses
+  /api/v1/licenses:
+    get:
+      summary: 'List Licenses'
+      operationId: listLicenses
+      description: ''
+      parameters:
+        -
+          in: query
+          name: status
+          description: 'Filter by license status. Options: active, inactive, expiring'
+          example: '?status=active'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by license status. Options: active, inactive, expiring'
+            example: '?status=active'
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'Filter by exact company ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact company ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: name
+          description: 'Filter by exact license name.'
+          example: 'Microsoft 365'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact license name.'
+            example: 'Microsoft 365'
+            nullable: false
+        -
+          in: query
+          name: product_key
+          description: 'Filter by exact product key.'
+          example: W269N
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact product key.'
+            example: W269N
+            nullable: false
+        -
+          in: query
+          name: order_number
+          description: 'Filter by exact order number.'
+          example: '12345'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact order number.'
+            example: '12345'
+            nullable: false
+        -
+          in: query
+          name: purchase_order
+          description: 'Filter by exact purchase order.'
+          example: PO12345
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact purchase order.'
+            example: PO12345
+            nullable: false
+        -
+          in: query
+          name: license_name
+          description: 'Filter by exact licensee name.'
+          example: 'John Doe'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact licensee name.'
+            example: 'John Doe'
+            nullable: false
+        -
+          in: query
+          name: license_email
+          description: 'Filter by exact licensee email.'
+          example: john.d
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact licensee email.'
+            example: john.d
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Licenses
+    post:
+      summary: 'Create License'
+      operationId: createLicense
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Licenses
+  '/api/v1/licenses/{license_id}':
+    get:
+      summary: 'Show License'
+      operationId: showLicense
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Licenses
+    put:
+      summary: 'Update License'
+      operationId: updateLicense
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Licenses
+    delete:
+      summary: 'Delete License'
+      operationId: deleteLicense
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Licenses
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/licenses/{license_id}/seats':
+    get:
+      summary: 'List License Seats'
+      operationId: listLicenseSeats
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Licenses
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/licenses/{license_id}/seats/{id}':
+    get:
+      summary: 'Show License Seat'
+      operationId: showLicenseSeat
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Licenses
+    put:
+      summary: 'Update License Seat'
+      operationId: updateLicenseSeat
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Licenses
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: id
+        description: 'The ID of the seat.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/locations/selectlist:
+    get:
+      summary: 'Gets a paginated collection for the select2 menus'
+      operationId: getsAPaginatedCollectionForTheSelect2Menus
+      description: "This is handled slightly differently as of ~4.7.8-pre, as\nwe have to do some recursive magic to get the hierarchy to display\nproperly when looking at the parent/child relationship in the\nrich menus.\n\nThis means we can't use the normal pagination that we use elsewhere\nin our selectlists, since we have to get the full set before we can\ndetermine which location is parent/child/grandchild, etc.\n\nThis also means that hierarchy display gets a little funky when people\nuse the Select2 search functionality, but there's not much we can do about\nthat right now.\n\nAs a result, instead of paginating as part of the query, we have to grab\nthe entire data set, and then invoke a paginator manually and pass that\nthrough to the SelectListTransformer.\n\nMany thanks to @uberbrady for the help getting this working better.\nRecursion still sucks, but I guess he doesn't have to get in the\nsea... this time."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Locations
+  '/api/v1/locations/{location_id}/assets':
+    get:
+      summary: 'Show Assets with Default Location'
+      operationId: showAssetsWithDefaultLocation
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Locations
+    parameters:
+      -
+        in: path
+        name: location_id
+        description: 'The ID of the location.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/locations/{location_id}/assigned/assets':
+    get:
+      summary: 'Show Assets Assigned to Location'
+      operationId: showAssetsAssignedToLocation
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Locations
+    parameters:
+      -
+        in: path
+        name: location_id
+        description: 'The ID of the location.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/locations/{location_id}/assigned/accessories':
+    get:
+      summary: 'Show Accessories Assigned to Location'
+      operationId: showAccessoriesAssignedToLocation
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Locations
+    parameters:
+      -
+        in: path
+        name: location_id
+        description: 'The ID of the location.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/locations:
+    get:
+      summary: 'List Locations'
+      operationId: listLocations
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'Search term to filter results.'
+          example: Headquarters
+          required: false
+          schema:
+            type: string
+            description: 'Search term to filter results.'
+            example: Headquarters
+            nullable: false
+        -
+          in: query
+          name: name
+          description: 'Filter by exact location name.'
+          example: Headquarters
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact location name.'
+            example: Headquarters
+            nullable: false
+        -
+          in: query
+          name: address
+          description: 'Filter by exact address.'
+          example: '123 Main St'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact address.'
+            example: '123 Main St'
+            nullable: false
+        -
+          in: query
+          name: address2
+          description: 'Filter by exact address2.'
+          example: 'Suite 100'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact address2.'
+            example: 'Suite 100'
+            nullable: false
+        -
+          in: query
+          name: city
+          description: 'Filter by exact city.'
+          example: Springfield
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact city.'
+            example: Springfield
+            nullable: false
+        -
+          in: query
+          name: zip
+          description: 'Filter by exact zip code.'
+          example: '12345'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact zip code.'
+            example: '12345'
+            nullable: false
+        -
+          in: query
+          name: country
+          description: 'Filter by exact country.'
+          example: USA
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact country.'
+            example: USA
+            nullable: false
+        -
+          in: query
+          name: manager_id
+          description: 'Filter by exact manager (user) ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact manager (user) ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'Filter by exact company ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact company ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: parent_id
+          description: 'Filter by exact parent location ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact parent location ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: status
+          description: 'Filter by location status. Allowed values: active, deleted.'
+          example: active
+          required: false
+          schema:
+            type: string
+            description: 'Filter by location status. Allowed values: active, deleted.'
+            example: active
+            nullable: false
+        -
+          in: query
+          name: sort
+          description: 'Column to sort results by. Allowed values: accessorries_count, address, address2, assets_count, assigned_assets_count, rtd_assets_count, accessories_count, assigned_accessories_count, components_count, consumables_count, users_count, children_count, city, country, created_at, currency, id, image, ldap_ou, company_id, manager_id, name, rtd_assets_count, state, updated_at, zip. Default: created_at.'
+          example: name
+          required: false
+          schema:
+            type: string
+            description: 'Column to sort results by. Allowed values: accessorries_count, address, address2, assets_count, assigned_assets_count, rtd_assets_count, accessories_count, assigned_accessories_count, components_count, consumables_count, users_count, children_count, city, country, created_at, currency, id, image, ldap_ou, company_id, manager_id, name, rtd_assets_count, state, updated_at, zip. Default: created_at.'
+            example: name
+            nullable: false
+        -
+          in: query
+          name: order
+          description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+          example: asc
+          required: false
+          schema:
+            type: string
+            description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+            example: asc
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Locations
+    post:
+      summary: 'Create Location'
+      operationId: createLocation
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Locations
+  '/api/v1/locations/{id}':
+    get:
+      summary: 'Show Location'
+      operationId: showLocation
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Locations
+    put:
+      summary: 'Update Location'
+      operationId: updateLocation
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Locations
+    delete:
+      summary: 'Delete Location'
+      operationId: deleteLocation
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Locations
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the location.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/maintenances:
+    get:
+      summary: 'List Maintenances'
+      operationId: listMaintenances
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'Search term to filter results.'
+          example: repair
+          required: false
+          schema:
+            type: string
+            description: 'Search term to filter results.'
+            example: repair
+            nullable: false
+        -
+          in: query
+          name: asset_id
+          description: 'Filter by exact asset ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact asset ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: supplier_id
+          description: 'Filter by exact supplier ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact supplier ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: created_by
+          description: 'Filter by exact user ID who created the maintenance. Example'
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact user ID who created the maintenance. Example'
+            example: 16
+            nullable: false
+        -
+          in: query
+          name: url
+          description: 'Filter by exact URL.'
+          example: 'http://example.com'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact URL.'
+            example: 'http://example.com'
+            nullable: false
+        -
+          in: query
+          name: asset_maintenance_type
+          description: 'Filter by exact maintenance type.'
+          example: repair
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact maintenance type.'
+            example: repair
+            nullable: false
+        -
+          in: query
+          name: sort
+          description: 'Column to sort results by. Allowed values: id, name, asset_maintenance_time, asset_maintenance_type, cost, start_date, completion_date, notes, asset_tag, asset_name, serial, created_by, supplier, location, is_warranty, status_label. Default: created_at.'
+          example: name
+          required: false
+          schema:
+            type: string
+            description: 'Column to sort results by. Allowed values: id, name, asset_maintenance_time, asset_maintenance_type, cost, start_date, completion_date, notes, asset_tag, asset_name, serial, created_by, supplier, location, is_warranty, status_label. Default: created_at.'
+            example: name
+            nullable: false
+        -
+          in: query
+          name: order
+          description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+          example: asc
+          required: false
+          schema:
+            type: string
+            description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+            example: asc
+            nullable: false
+        -
+          in: query
+          name: offset
+          description: 'Offset/starting position of the results. Default: 0.'
+          example: 0
+          required: false
+          schema:
+            type: integer
+            description: 'Offset/starting position of the results. Default: 0.'
+            example: 0
+            nullable: false
+        -
+          in: query
+          name: limit
+          description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
+          example: 50
+          required: false
+          schema:
+            type: integer
+            description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
+            example: 50
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Maintenances
+    post:
+      summary: 'Create Maintenance'
+      operationId: createMaintenance
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Maintenances
+  '/api/v1/maintenances/{id}':
+    get:
+      summary: 'View Maintenance'
+      operationId: viewMaintenance
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Maintenances
+    put:
+      summary: 'Update Maintenance'
+      operationId: updateMaintenance
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Maintenances
+    delete:
+      summary: 'Delete Maintenance'
+      operationId: deleteMaintenance
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Maintenances
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the maintenance.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/v1/manufacturers/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Manufacturers
+  '/api/v1/manufacturers/{id}/restore':
+    post:
+      summary: 'Restore Deleted Manufacturer'
+      operationId: restoreDeletedManufacturer
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Manufacturers
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the manufacturer.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/manufacturers:
+    get:
+      summary: 'List Manufacturers'
+      operationId: listManufacturers
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'Search term to filter results.'
+          example: Dell
+          required: false
+          schema:
+            type: string
+            description: 'Search term to filter results.'
+            example: Dell
+            nullable: false
+        -
+          in: query
+          name: name
+          description: 'Filter by exact manufacturer name.'
+          example: Dell
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact manufacturer name.'
+            example: Dell
+            nullable: false
+        -
+          in: query
+          name: url
+          description: 'Filter by exact URL.'
+          example: 'http://example.com'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact URL.'
+            example: 'http://example.com'
+            nullable: false
+        -
+          in: query
+          name: support_url
+          description: 'Filter by exact support URL.'
+          example: 'http://support.example.com'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact support URL.'
+            example: 'http://support.example.com'
+            nullable: false
+        -
+          in: query
+          name: warranty_lookup_url
+          description: 'Filter by exact warranty lookup URL.'
+          example: 'http://warranty.example.com'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact warranty lookup URL.'
+            example: 'http://warranty.example.com'
+            nullable: false
+        -
+          in: query
+          name: support_phone
+          description: 'Filter by exact support phone number.'
+          example: 1-800-555-5555
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact support phone number.'
+            example: 1-800-555-5555
+            nullable: false
+        -
+          in: query
+          name: support_email
+          description: 'Filter by exact support email address.'
+          example: support@example.org
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact support email address.'
+            example: support@example.org
+            nullable: false
+        -
+          in: query
+          name: sort
+          description: 'Column to sort results by. Allowed values: id, name, url, support_url, support_email, warranty_lookup_url, support_phone, created_at, updated_at, assets_count, consumables_count, components_count, licenses_count. Default: created_at.'
+          example: name
+          required: false
+          schema:
+            type: string
+            description: 'Column to sort results by. Allowed values: id, name, url, support_url, support_email, warranty_lookup_url, support_phone, created_at, updated_at, assets_count, consumables_count, components_count, licenses_count. Default: created_at.'
+            example: name
+            nullable: false
+        -
+          in: query
+          name: order
+          description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+          example: asc
+          required: false
+          schema:
+            type: string
+            description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+            example: asc
+            nullable: false
+        -
+          in: query
+          name: offset
+          description: 'Offset/starting position of the results. Default: 0.'
+          example: 0
+          required: false
+          schema:
+            type: integer
+            description: 'Offset/starting position of the results. Default: 0.'
+            example: 0
+            nullable: false
+        -
+          in: query
+          name: limit
+          description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
+          example: 50
+          required: false
+          schema:
+            type: integer
+            description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
+            example: 50
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Manufacturers
+    post:
+      summary: 'Create Maintenance'
+      operationId: createMaintenance
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Manufacturers
+  '/api/v1/manufacturers/{id}':
+    get:
+      summary: 'Show Manufacturer'
+      operationId: showManufacturer
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Manufacturers
+    put:
+      summary: 'Update Manufacturer'
+      operationId: updateManufacturer
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Manufacturers
+    delete:
+      summary: 'Delete Manufacturer'
+      operationId: deleteManufacturer
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Manufacturers
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the manufacturer.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1:
+    get:
+      summary: ''
+      operationId: getApiV1
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  /api/v1/account/requests:
+    get:
+      summary: 'Display a listing of requested assets.'
+      operationId: displayAListingOfRequestedAssets
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  /api/v1/account/eulas:
+    get:
+      summary: 'Display the EULAs accepted by the user.'
+      operationId: displayTheEULAsAcceptedByTheUser
+      description: '@param \App\Http\Transformers\ActionlogsTransformer $transformer'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  '/api/v1/account/request/{asset_id}':
+    post:
+      summary: ''
+      operationId: postApiV1AccountRequestAsset_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/account/request/{asset_id}/cancel':
+    post:
+      summary: ''
+      operationId: postApiV1AccountRequestAsset_idCancel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/account/personal-access-tokens:
+    post:
+      summary: 'Delete an API token'
+      operationId: deleteAnAPIToken
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    get:
+      summary: "Show user's API tokens"
+      operationId: showUsersAPITokens
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  '/api/v1/account/personal-access-tokens/{tokenId}':
+    delete:
+      summary: 'Delete an API token'
+      operationId: deleteAnAPIToken
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: tokenId
+        description: ''
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/accessories/{accessory}/checkin':
+    post:
+      summary: 'Checkin Accessory'
+      operationId: checkinAccessory
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: accessory
+        description: 'The accessory.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/accessories/selectlist:
+    get:
+      summary: 'Gets a paginated collection for the select2 menus'
+      operationId: getsAPaginatedCollectionForTheSelect2Menus
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  '/api/v1/hardware/{asset_id}/licenses':
+    get:
+      summary: ''
+      operationId: getApiV1HardwareAsset_idLicenses
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/hardware/{asset_id}/assigned/components':
+    get:
+      summary: ''
+      operationId: getApiV1HardwareAsset_idAssignedComponents
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/models/{id}':
+    get:
+      summary: 'Show Model'
+      operationId: showModel
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    put:
+      summary: 'Update Model'
+      operationId: updateModel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Models
+    delete:
+      summary: 'Delete Model'
+      operationId: deleteModel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Models
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the model.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/settings/ldaptest:
+    get:
+      summary: ''
+      operationId: getApiV1SettingsLdaptest
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  /api/v1/settings/purge_barcodes:
+    post:
+      summary: 'Delete server-cached barcodes'
+      operationId: deleteServerCachedBarcodes
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+  /api/v1/settings/login-attempts:
+    get:
+      summary: 'Get a list of login attempts'
+      operationId: getAListOfLoginAttempts
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  /api/v1/settings/ldaptestlogin:
+    post:
+      summary: ''
+      operationId: postApiV1SettingsLdaptestlogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ldaptest_user:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: false
+                ldaptest_password:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: false
+              required:
+                - ldaptest_user
+                - ldaptest_password
+  /api/v1/settings/mailtest:
+    post:
+      summary: 'Test the email configuration'
+      operationId: testTheEmailConfiguration
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+  /api/v1/settings/backups:
+    get:
+      summary: 'Lists backup files'
+      operationId: listsBackupFiles
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  /api/v1/settings/backups/download/latest:
+    get:
+      summary: 'Determines and downloads the latest backup'
+      operationId: determinesAndDownloadsTheLatestBackup
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  '/api/v1/settings/backups/download/{file}':
+    get:
+      summary: 'Downloads a backup file.'
+      operationId: downloadsABackupFile
+      description: "We use response()->download() here instead of Storage::download() because Storage::download()\nexhausts memory on larger files."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: file
+        description: ''
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/users/{user_id}/eulas':
+    get:
+      summary: 'Display the EULAs accepted by the user.'
+      operationId: displayTheEULAsAcceptedByTheUser
+      description: '@param \App\Models\User $user'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: user_id
+        description: 'The ID of the user.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/v1/kits:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+  '/api/v1/kits/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the kit.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/kits/{kit_id}/licenses':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    post:
+      summary: 'Store the specified resource.'
+      operationId: storeTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/kits/{kit_id}/licenses/{license_id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/kits/{kit_id}/models':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    post:
+      summary: 'Store the specified resource.'
+      operationId: storeTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/kits/{kit_id}/accessories':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    post:
+      summary: 'Store the specified resource.'
+      operationId: storeTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/kits/{kit_id}/accessories/{accessory_id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: accessory_id
+        description: 'The ID of the accessory.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/kits/{kit_id}/consumables':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    post:
+      summary: 'Store the specified resource.'
+      operationId: storeTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/kits/{kit_id}/consumables/{consumable_id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: consumable_id
+        description: 'The ID of the consumable.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/reports/activity:
+    get:
+      summary: 'Returns Activity Report JSON.'
+      operationId: returnsActivityReportJSON
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  /api/v1/version:
+    get:
+      summary: 'Version API routes'
+      operationId: versionAPIRoutes
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+  '/api/v1/{fallbackPlaceholder}':
+    get:
+      summary: ''
+      operationId: getApiV1FallbackPlaceholder
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Misc
+    parameters:
+      -
+        in: path
+        name: fallbackPlaceholder
+        description: ''
+        example: '|{+-0p'
+        required: true
+        schema:
+          type: string
+  /api/v1/models/selectlist:
+    get:
+      summary: 'Selectlist of Models'
+      operationId: selectlistOfModels
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Models
+  /api/v1/models/assets:
+    get:
+      summary: 'List Assets in Model'
+      operationId: listAssetsInModel
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Models
+  /api/v1/models:
+    get:
+      summary: 'List Models'
+      operationId: listModels
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Models
+    post:
+      summary: 'Create Model'
+      operationId: createModel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Models
+  '/api/v1/notes/{asset_id}/store':
+    post:
+      summary: 'Store Note'
+      operationId: storeNote
+      description: "Checks authorization for updating assets, validates the presence of the 'note',\nattempts to find the asset by ID, and creates a new ActionLog entry if successful.\nReturns JSON responses indicating success or failure with appropriate HTTP status codes."
+      parameters: []
+      responses: {  }
+      tags:
+        - Notes
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/notes/{asset_id}/index':
+    get:
+      summary: 'List Notes'
+      operationId: listNotes
+      description: "Checks authorization to view assets, attempts to find the asset by ID,\nand fetches related action log entries of type 'note added', including\nuser information for each note. Returns a JSON response with the notes or errors."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Notes
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/statuslabels/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Status Labels'
+  /api/v1/statuslabels/assets/name:
+    get:
+      summary: 'Show Count for Pie Chart'
+      operationId: showCountForPieChart
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Status Labels'
+  /api/v1/statuslabels/assets/type:
+    get:
+      summary: 'Show Count for Pie Chart by Meta Status'
+      operationId: showCountForPieChartByMetaStatus
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Status Labels'
+  '/api/v1/statuslabels/{id}/assetlist':
+    get:
+      summary: 'Show Assets with Status Label'
+      operationId: showAssetsWithStatusLabel
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Status Labels'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the statuslabel.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/statuslabels/{statuslabel}/deployable':
+    get:
+      summary: 'Check for Deployable Status'
+      operationId: checkForDeployableStatus
+      description: "Returns a boolean response based on whether the status label\nis one that is deployable or pending.\n\nThis is used by the hardware create/edit view to determine whether\nwe should provide a dropdown of users for them to check the asset out to,\nand whether we show a warning that the asset will be checked in if it's already\nassigned but the status is changed to one that isn't pending or deployable"
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Status Labels'
+    parameters:
+      -
+        in: path
+        name: statuslabel
+        description: 'The statuslabel.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/statuslabels:
+    get:
+      summary: 'Show Status Labels'
+      operationId: showStatusLabels
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'Search term to filter results.'
+          example: Inventory
+          required: false
+          schema:
+            type: string
+            description: 'Search term to filter results.'
+            example: Inventory
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Status Labels'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Status Labels'
+  '/api/v1/statuslabels/{id}':
+    get:
+      summary: 'Show Status Labels'
+      operationId: showStatusLabels
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Status Labels'
+    put:
+      summary: 'Update Status Label'
+      operationId: updateStatusLabel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Status Labels'
+    delete:
+      summary: 'Delete Status Label'
+      operationId: deleteStatusLabel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Status Labels'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the statuslabel.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/suppliers/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Suppliers
+  /api/v1/suppliers:
+    get:
+      summary: 'List Suppliers'
+      operationId: listSuppliers
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'Search term to filter results.'
+          example: Acme
+          required: false
+          schema:
+            type: string
+            description: 'Search term to filter results.'
+            example: Acme
+            nullable: false
+        -
+          in: query
+          name: name
+          description: 'Filter by exact supplier name.'
+          example: 'Acme Corp'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact supplier name.'
+            example: 'Acme Corp'
+            nullable: false
+        -
+          in: query
+          name: address
+          description: 'Filter by exact address.'
+          example: '123 Main St'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact address.'
+            example: '123 Main St'
+            nullable: false
+        -
+          in: query
+          name: address2
+          description: 'Filter by exact address2.'
+          example: 'Suite 100'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact address2.'
+            example: 'Suite 100'
+            nullable: false
+        -
+          in: query
+          name: city
+          description: 'Filter by exact city.'
+          example: Springfield
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact city.'
+            example: Springfield
+            nullable: false
+        -
+          in: query
+          name: state
+          description: 'Filter by exact state.'
+          example: IL
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact state.'
+            example: IL
+            nullable: false
+        -
+          in: query
+          name: zip
+          description: 'Filter by exact zip code.'
+          example: '62701'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact zip code.'
+            example: '62701'
+            nullable: false
+        -
+          in: query
+          name: country
+          description: 'Filter by exact country.'
+          example: USA
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact country.'
+            example: USA
+            nullable: false
+        -
+          in: query
+          name: phone
+          description: 'Filter by exact phone number.'
+          example: 555-1234
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact phone number.'
+            example: 555-1234
+            nullable: false
+        -
+          in: query
+          name: fax
+          description: 'Filter by exact fax number.'
+          example: 555-5678
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact fax number.'
+            example: 555-5678
+            nullable: false
+        -
+          in: query
+          name: email
+          description: 'Filter by exact email address.'
+          example: info@example.org
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact email address.'
+            example: info@example.org
+            nullable: false
+        -
+          in: query
+          name: url
+          description: 'Filter by exact URL.'
+          example: 'http://example.com'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact URL.'
+            example: 'http://example.com'
+            nullable: false
+        -
+          in: query
+          name: notes
+          description: 'Filter by exact notes.'
+          example: 'This is a note.'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact notes.'
+            example: 'This is a note.'
+            nullable: false
+        -
+          in: query
+          name: sort
+          description: 'Column to sort results by. Allowed values: id, name, address, address2, city, state, country, zip, phone, contact, fax, email, image, assets_count, licenses_count, accessories_count, components_count, consumables_count, url, notes. Default: created_at.'
+          example: name
+          required: false
+          schema:
+            type: string
+            description: 'Column to sort results by. Allowed values: id, name, address, address2, city, state, country, zip, phone, contact, fax, email, image, assets_count, licenses_count, accessories_count, components_count, consumables_count, url, notes. Default: created_at.'
+            example: name
+            nullable: false
+        -
+          in: query
+          name: order
+          description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+          example: asc
+          required: false
+          schema:
+            type: string
+            description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
+            example: asc
+            nullable: false
+        -
+          in: query
+          name: offset
+          description: 'Offset/starting position of the results. Default: 0.'
+          example: 0
+          required: false
+          schema:
+            type: integer
+            description: 'Offset/starting position of the results. Default: 0.'
+            example: 0
+            nullable: false
+        -
+          in: query
+          name: limit
+          description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
+          example: 50
+          required: false
+          schema:
+            type: integer
+            description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
+            example: 50
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Suppliers
+    post:
+      summary: 'Create Supplier'
+      operationId: createSupplier
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Suppliers
+  '/api/v1/suppliers/{id}':
+    get:
+      summary: 'Show Supplier'
+      operationId: showSupplier
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Suppliers
+    put:
+      summary: 'Update Supplier'
+      operationId: updateSupplier
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Suppliers
+    delete:
+      summary: 'Delete Supplier'
+      operationId: deleteSupplier
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Suppliers
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the supplier.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/groups:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'User Groups'
+    post:
+      summary: 'Create Group'
+      operationId: createGroup
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'User Groups'
+  '/api/v1/groups/{id}':
+    get:
+      summary: 'Show Group'
+      operationId: showGroup
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'User Groups'
+    put:
+      summary: 'Update Group'
+      operationId: updateGroup
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'User Groups'
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'User Groups'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the group.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/users/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Users
+  /api/v1/users/ldapsync:
+    post:
+      summary: 'LDAP Sync Users'
+      operationId: lDAPSyncUsers
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+  /api/v1/users/two_factor_reset:
+    post:
+      summary: 'Reset Two-factor'
+      operationId: resetTwoFactor
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+  /api/v1/users/me:
+    get:
+      summary: 'Get Current User Info'
+      operationId: getCurrentUserInfo
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Users
+  '/api/v1/users/{user}/assets':
+    get:
+      summary: 'List Assets Assigned to User'
+      operationId: listAssetsAssignedToUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Users
+    parameters:
+      -
+        in: path
+        name: user
+        description: 'The user.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  '/api/v1/users/{user}/email':
+    post:
+      summary: 'Email Asset List to User'
+      operationId: emailAssetListToUser
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+    parameters:
+      -
+        in: path
+        name: user
+        description: 'The user.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  '/api/v1/users/{user}/accessories':
+    get:
+      summary: 'List Accessories Assigned to User'
+      operationId: listAccessoriesAssignedToUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Users
+    parameters:
+      -
+        in: path
+        name: user
+        description: 'The user.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  '/api/v1/users/{user}/licenses':
+    get:
+      summary: 'List Licenses Assigned to User'
+      operationId: listLicensesAssignedToUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Users
+    parameters:
+      -
+        in: path
+        name: user
+        description: 'The user.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  '/api/v1/users/{user}/restore':
+    post:
+      summary: 'Restore User'
+      operationId: restoreUser
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+    parameters:
+      -
+        in: path
+        name: user
+        description: 'The user.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/v1/users:
+    get:
+      summary: 'List Users'
+      operationId: listUsers
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'Search term to filter results.'
+          example: John
+          required: false
+          schema:
+            type: string
+            description: 'Search term to filter results.'
+            example: John
+            nullable: false
+        -
+          in: query
+          name: filter
+          description: 'JSON object of key/value pairs to filter results. Allowed keys: last_name, first_name, display_name, email, jobtitle, username, employee_num, groups, activated, created_at, updated_at, two_factor_enrolled, two_factor_optin, last_login, assets_count, licenses_count, consumables_count, accessories_count, manages_users_count, manages_locations_count, phone, mobile, address, city, state, country, zip, id, ldap_import, remote, vip, start_date, end_date, autoassign_licenses, website, locale, notes.'
+          example: '{"last_name":"Doe","first_name":"John"}'
+          required: false
+          schema:
+            type: string
+            description: 'JSON object of key/value pairs to filter results. Allowed keys: last_name, first_name, display_name, email, jobtitle, username, employee_num, groups, activated, created_at, updated_at, two_factor_enrolled, two_factor_optin, last_login, assets_count, licenses_count, consumables_count, accessories_count, manages_users_count, manages_locations_count, phone, mobile, address, city, state, country, zip, id, ldap_import, remote, vip, start_date, end_date, autoassign_licenses, website, locale, notes.'
+            example: '{"last_name":"Doe","first_name":"John"}'
+            nullable: false
+        -
+          in: query
+          name: activated
+          description: 'Filter by exact activation status. Allowed values: 0, 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact activation status. Allowed values: 0, 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: admins
+          description: 'Filter to only admin and superadmin users. Allowed values: true, false.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Filter to only admin and superadmin users. Allowed values: true, false.'
+            example: true
+            nullable: false
+        -
+          in: query
+          name: superadmins
+          description: 'Filter to only superadmin users. Allowed values: true, false.'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Filter to only superadmin users. Allowed values: true, false.'
+            example: true
+            nullable: false
+        -
+          in: query
+          name: company_id
+          description: 'Filter by exact company ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact company ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: phone
+          description: 'Filter by exact phone number.'
+          example: 555-1234
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact phone number.'
+            example: 555-1234
+            nullable: false
+        -
+          in: query
+          name: mobile
+          description: 'Filter by exact mobile number.'
+          example: 555-5678
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact mobile number.'
+            example: 555-5678
+            nullable: false
+        -
+          in: query
+          name: location_id
+          description: 'Filter by exact location ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact location ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: created_by
+          description: 'Filter by exact user ID who created the user.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact user ID who created the user.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: email
+          description: 'Filter by exact email address.'
+          example: jdoe@example.com
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact email address.'
+            example: jdoe@example.com
+            nullable: false
+        -
+          in: query
+          name: username
+          description: 'Filter by exact username.'
+          example: jdoe
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact username.'
+            example: jdoe
+            nullable: false
+        -
+          in: query
+          name: first_name
+          description: 'Filter by exact first name.'
+          example: John
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact first name.'
+            example: John
+            nullable: false
+        -
+          in: query
+          name: last_name
+          description: 'Filter by exact last name.'
+          example: Doe
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact last name.'
+            example: Doe
+            nullable: false
+        -
+          in: query
+          name: display_name
+          description: 'Filter by exact display name.'
+          example: 'John Doe'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact display name.'
+            example: 'John Doe'
+            nullable: false
+        -
+          in: query
+          name: employee_num
+          description: 'Filter by exact employee number.'
+          example: '12345'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact employee number.'
+            example: '12345'
+            nullable: false
+        -
+          in: query
+          name: state
+          description: 'Filter by exact state.'
+          example: CA
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact state.'
+            example: CA
+            nullable: false
+        -
+          in: query
+          name: country
+          description: 'Filter by exact country.'
+          example: USA
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact country.'
+            example: USA
+            nullable: false
+        -
+          in: query
+          name: website
+          description: 'Filter by exact website URL.'
+          example: 'https://example.com'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact website URL.'
+            example: 'https://example.com'
+            nullable: false
+        -
+          in: query
+          name: zip
+          description: 'Filter by exact ZIP code.'
+          example: '90210'
+          required: false
+          schema:
+            type: string
+            description: 'Filter by exact ZIP code.'
+            example: '90210'
+            nullable: false
+        -
+          in: query
+          name: group_id
+          description: 'Filter by exact group ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact group ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: department_id
+          description: 'Filter by exact department ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact department ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: manager_id
+          description: 'Filter by exact manager (user) ID.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact manager (user) ID.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: ldap_import
+          description: 'Filter by exact LDAP import status. Allowed values: 0, 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact LDAP import status. Allowed values: 0, 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: remote
+          description: 'Filter by exact remote status. Allowed values: 0, 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact remote status. Allowed values: 0, 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: vip
+          description: 'Filter by exact VIP status. Allowed values: 0, 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact VIP status. Allowed values: 0, 1.'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: two_factor_enrolled
+          description: 'Filter by exact two-factor authentication enrollment status. Allowed values: 0, 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by exact two-factor authentication enrollment status. Allowed values: 0, 1.'
+            example: 1
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Users
+    post:
+      summary: 'Create User'
+      operationId: createUser
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+  '/api/v1/users/{id}':
+    get:
+      summary: 'Show User'
+      operationId: showUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Users
+    put:
+      summary: 'Update User'
+      operationId: updateUser
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+    delete:
+      summary: 'Delete User'
+      operationId: deleteUser
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 2
+        required: true
+        schema:
+          type: integer

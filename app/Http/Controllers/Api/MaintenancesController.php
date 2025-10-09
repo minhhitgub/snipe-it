@@ -22,8 +22,19 @@ class MaintenancesController extends Controller
 {
 
     /**
-     *  Generates the JSON response for asset maintenances listing view.
+     *  List Maintenances
      *
+     * @group Maintenances
+     * @queryParam search string Search term to filter results. Example: repair
+     * @queryParam asset_id integer Filter by exact asset ID. Example: 1
+     * @queryParam supplier_id integer Filter by exact supplier ID. Example: 1
+     * @queryParam created_by integer Filter by exact user ID who created the maintenance. Example
+     * @queryParam url string Filter by exact URL. Example: http://example.com
+     * @queryParam asset_maintenance_type string Filter by exact maintenance type. Example: repair
+     * @queryParam sort string Column to sort results by. Allowed values: id, name, asset_maintenance_time, asset_maintenance_type, cost, start_date, completion_date, notes, asset_tag, asset_name, serial, created_by, supplier, location, is_warranty, status_label. Default: created_at. Example: name
+     * @queryParam order string Order of sorted results. Allowed values: asc, desc. Default: desc. Example: asc
+     * @queryParam offset integer Offset/starting position of the results. Default: 0. Example: 0
+     * @queryParam limit integer Limit the number of results returned. Default: 25. Maximum: 100. Example: 50
      * @see MaintenancesController::getIndex() method that generates view
      * @author  Vincent Sposato <vincent.sposato@gmail.com>
      * @version v1.0
@@ -123,8 +134,9 @@ class MaintenancesController extends Controller
 
 
     /**
-     *  Validates and stores the new asset maintenance
+     *  Create Maintenance
      *
+     * @group Maintenances
      * @see MaintenancesController::getCreate() method for the form
      * @author  Vincent Sposato <vincent.sposato@gmail.com>
      * @version v1.0
@@ -150,8 +162,9 @@ class MaintenancesController extends Controller
     }
 
     /**
-     *  Validates and stores an update to an asset maintenance
+     *  Update Maintenance
      *
+     * @group Maintenances
      * @author  A. Gianotto <snipe@snipe.net>
      * @param int $id
      * @param int $request
@@ -188,8 +201,9 @@ class MaintenancesController extends Controller
     }
 
     /**
-     *  Delete an asset maintenance
+     *  Delete Maintenance
      *
+     * @group Maintenances
      * @author  A. Gianotto <snipe@snipe.net>
      * @param int $maintenanceId
      * @version v1.0
@@ -210,8 +224,9 @@ class MaintenancesController extends Controller
     }
 
     /**
-     *  View an asset maintenance
+     *  View Maintenance
      *
+     * @group Maintenances
      * @author  A. Gianotto <snipe@snipe.net>
      * @param int $maintenanceId
      * @version v1.0

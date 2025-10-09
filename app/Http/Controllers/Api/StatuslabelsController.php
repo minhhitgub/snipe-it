@@ -17,7 +17,11 @@ use Illuminate\Http\JsonResponse;
 class StatuslabelsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show Status Labels
+     *
+     * @group Status Labels
+     * @subgroup Assets
+     * @queryParam search string Search term to filter results. Example: Inventory
      *
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
@@ -85,9 +89,11 @@ class StatuslabelsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Status Labels
+     * @subgroup Assets
      * @param  \Illuminate\Http\Request  $request
+     *@since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function store(Request $request) : JsonResponse
     {
@@ -119,11 +125,13 @@ class StatuslabelsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Status Labels
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Status Labels
+     * @subgroup Assets
      * @param  int  $id
+     *@since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function show($id) : array
     {
@@ -135,12 +143,14 @@ class StatuslabelsController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Update Status Label
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Status Labels
+     * @subgroup Assets
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     *@author [A. Gianotto] [<snipe@snipe.net>]
+     * @since [v4.0]
      */
     public function update(Request $request, $id) : JsonResponse
     {
@@ -172,11 +182,13 @@ class StatuslabelsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Status Label
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Status Labels
+     * @subgroup Assets
      * @param  int  $id
+     *@since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function destroy($id) : JsonResponse
     {
@@ -197,8 +209,10 @@ class StatuslabelsController extends Controller
 
 
      /**
-     * Show a count of assets by status label for pie chart
+     * Show Count for Pie Chart
      *
+     * @group Status Labels
+     * @subgroup Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v3.0]
      */
@@ -229,8 +243,10 @@ class StatuslabelsController extends Controller
     }
 
     /**
-     * Show a count of assets by meta status type for pie chart
+     * Show Count for Pie Chart by Meta Status
      *
+     * @group Status Labels
+     * @subgroup Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v6.0.11]
      */
@@ -257,11 +273,13 @@ class StatuslabelsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Assets with Status Label
      *
-     * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @since [v4.0]
+     * @group Status Labels
+     * @subgroup Assets
      * @param  int  $id
+     *@since [v4.0]
+     * @author [A. Gianotto] [<snipe@snipe.net>]
      */
     public function assets(Request $request, $id) : array
     {
@@ -289,6 +307,8 @@ class StatuslabelsController extends Controller
 
 
     /**
+     * Check for Deployable Status
+     *
      * Returns a boolean response based on whether the status label
      * is one that is deployable or pending.
      *
@@ -296,7 +316,8 @@ class StatuslabelsController extends Controller
      * we should provide a dropdown of users for them to check the asset out to,
      * and whether we show a warning that the asset will be checked in if it's already
      * assigned but the status is changed to one that isn't pending or deployable
-     *
+     * @group Status Labels
+     * @subgroup Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -311,8 +332,10 @@ class StatuslabelsController extends Controller
     }
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Status Labels
+     * @subgroup Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v6.1.1]
      * @see \App\Http\Transformers\SelectlistTransformer

@@ -15,8 +15,18 @@ use Illuminate\Http\JsonResponse;
 class DepartmentsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Departments
      *
+     * @group Departments
+     * @queryParam search string Search term to filter results. Example: IT
+     * @queryParam name string Filter by exact department name. Example: IT
+     * @queryParam company_id integer Filter by exact company ID. Example: 1
+     * @queryParam manager_id integer Filter by exact manager (user) ID. Example:
+     * @queryParam location_id integer Filter by exact location ID. Example: 1
+     * @queryParam sort string Column to sort results by. Allowed values: id, name, image, users_count, notes, created_at, updated_at, location, manager, company. Default: created_at. Example: name
+     * @queryParam order string Order of sorted results. Allowed values: asc, desc. Default: desc. Example: asc
+     * @queryParam offset integer Offset/starting position of the results. Default: 0. Example: 0
+     * @queryParam limit integer Limit the number of results returned. Default: 25. Maximum: 100. Example: 50
      * @author [Godfrey Martinez] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -88,8 +98,9 @@ class DepartmentsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create Department
      *
+     * @group Departments
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -112,8 +123,9 @@ class DepartmentsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Department
      *
+     * @group Departments
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -126,8 +138,9 @@ class DepartmentsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Department
      *
+     * @group Departments
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v5.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -149,8 +162,9 @@ class DepartmentsController extends Controller
 
 
     /**
-     * Validates and deletes selected department.
+     * Delete Department
      *
+     * @group Departments
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param int $locationId
      * @since [v4.0]
@@ -171,8 +185,9 @@ class DepartmentsController extends Controller
     }
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Departments
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer

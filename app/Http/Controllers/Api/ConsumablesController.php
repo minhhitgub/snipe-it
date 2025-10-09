@@ -19,8 +19,21 @@ use Illuminate\Http\JsonResponse;
 class ConsumablesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Consumables
      *
+     * @group Consumables
+     * @queryParam filter string A JSON encoded array of key/value pairs to filter results by. Example: {"company":"1","location":"2"}
+     * @queryParam search string A search term to filter results by.
+     * @queryParam name string Filter by exact name.
+     * @queryParam company_id integer Filter by exact company ID.
+     * @queryParam category_id integer Filter by exact category ID.
+     * @queryParam model_number string Filter by exact model number.
+     * @queryParam manufacturer_id integer Filter by exact manufacturer ID.
+     * @queryParam supplier_id integer Filter by exact supplier ID.
+     * @queryParam location_id integer Filter by exact location ID.
+     * @queryParam notes string Filter by exact notes.
+     * @queryParam sort string The column to sort results by. Must be one of the following: id, name, order_number, min_amt, purchase_date, purchase_cost, company, category, model_number, item_no, manufacturer, location, qty, image, company, location, category, supplier, manufacturer. Default is created_at.
+     * @queryParam order string The order to sort results by. Must be one of the following: asc, desc. Default is desc.
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
@@ -153,6 +166,7 @@ class ConsumablesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @group Consumables
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest $request
@@ -172,8 +186,9 @@ class ConsumablesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Consumable
      *
+     * @group Consumables
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @param  int $id
      */
@@ -186,8 +201,9 @@ class ConsumablesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Consumable
      *
+     * @group Consumables
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest $request
@@ -208,8 +224,9 @@ class ConsumablesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Consumable
      *
+     * @group Consumables
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int $id
@@ -225,8 +242,9 @@ class ConsumablesController extends Controller
     }
 
     /**
-    * Returns a JSON response containing details on the users associated with this consumable.
+    * User Assignments
     *
+     * @group Consumables
     * @author [A. Gianotto] [<snipe@snipe.net>]
     * @see \App\Http\Controllers\Consumables\ConsumablesController::getView() method that returns the form.
     * @since [v1.0]
@@ -272,8 +290,9 @@ class ConsumablesController extends Controller
     }
 
     /**
-     * Checkout a consumable
+     * Checkout Consumable
      *
+     * @group Consumables
      * @author [A. Gutierrez] [<andres@baller.tv>]
      * @param int $id
      * @since [v4.9.5]
@@ -334,8 +353,9 @@ class ConsumablesController extends Controller
     }
 
     /**
-    * Gets a paginated collection for the select2 menus
+    * Selectlist
     *
+    * @group Consumables
     * @see \App\Http\Transformers\SelectlistTransformer
     */
     public function selectlist(Request $request) : array

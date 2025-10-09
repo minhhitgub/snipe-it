@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Storage;
 class CategoriesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Categories
      *
+     * @group Categories
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @return \Illuminate\Http\Response
@@ -148,8 +149,9 @@ class CategoriesController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Create Category
      *
+     * @group Categories
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest $request
@@ -171,8 +173,9 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Category
      *
+     * @group Categories
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -187,8 +190,9 @@ class CategoriesController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Update Category
      *
+     * @group Categories
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  \App\Http\Requests\ImageUploadRequest  $request
@@ -217,8 +221,9 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Category
      *
+     * @group Categories
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      * @param  int  $id
@@ -241,8 +246,9 @@ class CategoriesController extends Controller
 
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Categories
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer
