@@ -1,16 +1,16 @@
-name: Account
+name: Files
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/account/requests
+    uri: 'api/v1/{object_type}/{id}/files'
     metadata:
-      groupName: Account
+      groupName: Files
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display Requested Assets'
+      title: 'List Files for an Object'
       description: ''
       authenticated: true
       deprecated: false
@@ -19,8 +19,30 @@ endpoints:
       Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      object_type:
+        name: object_type
+        description: ''
+        required: true
+        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the {object type}.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      object_type: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+      id: architecto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -40,7 +62,7 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=qIWm6chVMaJXUcKG9E8EHhnb7F9wQT14AjEraiFE; expires=Sat, 18 Oct 2025 20:42:51 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=HfR9HTwK8SuIGE2OuiaImTbUpBhp1HtUBHMeilHy; expires=Sat, 18 Oct 2025 20:42:53 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
@@ -55,13 +77,13 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/account/eulas
+    uri: 'api/v1/{object_type}/{id}/files/{file_id}'
     metadata:
-      groupName: Account
+      groupName: Files
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display Accepted EULAs'
+      title: 'Display File'
       description: ''
       authenticated: true
       deprecated: false
@@ -70,8 +92,41 @@ endpoints:
       Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      object_type:
+        name: object_type
+        description: ''
+        required: true
+        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the {object type}.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      file_id:
+        name: file_id
+        description: 'The ID of the file.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      object_type: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+      id: architecto
+      file_id: architecto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -91,7 +146,7 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=nhItaWioeRLO0dKBgjno1X73ttHn50uXRQ7L7BAc; expires=Sat, 18 Oct 2025 20:42:51 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=N688uqN5BWG2WKvT3v6TxAJAl1Il05lzaTycQ40x; expires=Sat, 18 Oct 2025 20:42:53 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
@@ -106,13 +161,13 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: 'api/v1/account/request/{asset_id}'
+    uri: 'api/v1/{object_type}/{id}/files'
     metadata:
-      groupName: Account
+      groupName: Files
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store Asset Request'
+      title: 'Upload File to an Object'
       description: ''
       authenticated: true
       deprecated: false
@@ -122,156 +177,35 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      asset_id:
-        name: asset_id
-        description: 'The ID of the asset.'
+      object_type:
+        name: object_type
+        description: ''
         required: true
-        example: 1
-        type: integer
+        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the {object type}.'
+        required: true
+        example: architecto
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      asset_id: 1
+      object_type: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+      id: architecto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: 'api/v1/account/request/{asset_id}/cancel'
-    metadata:
-      groupName: Account
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Cancel Asset Request'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      asset_id:
-        name: asset_id
-        description: 'The ID of the asset.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      asset_id: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/account/personal-access-tokens
-    metadata:
-      groupName: Account
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Create API token'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/account/personal-access-tokens
-    metadata:
-      groupName: Account
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Show API tokens'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"error":"Unauthorized or unauthenticated."}'
-        headers:
-          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
-          content-type: application/json
-          vary: Origin
-          pragma: no-cache
-          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
-          x-content-type-options: nosniff
-          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
-          referrer-policy: same-origin
-          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=yUjH3zpUXM18qZVCvvVEp1y5zfNNok8NctCrwGof; expires=Sat, 18 Oct 2025 20:42:51 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
-        description: null
-        custom: []
     responseFields: []
     auth:
       - headers
@@ -284,13 +218,13 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/account/personal-access-tokens/{tokenId}'
+    uri: 'api/v1/{object_type}/{id}/files/{file_id}/delete'
     metadata:
-      groupName: Account
+      groupName: Files
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Delete API token'
+      title: 'Delete File'
       description: ''
       authenticated: true
       deprecated: false
@@ -300,9 +234,29 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      tokenId:
-        name: tokenId
+      object_type:
+        name: object_type
         description: ''
+        required: true
+        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the {object type}.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      file_id:
+        name: file_id
+        description: 'The ID of the file.'
         required: true
         example: architecto
         type: string
@@ -311,7 +265,9 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      tokenId: architecto
+      object_type: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+      id: architecto
+      file_id: architecto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

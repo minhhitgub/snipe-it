@@ -198,9 +198,10 @@ class AssetModelsController extends Controller
     /**
      * Show Model
      *
+     * @group Models
+     * @urlParam id int required The ID of the model.
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
-     * @param  int  $id
      */
     public function show($id) :  array
     {
@@ -214,9 +215,10 @@ class AssetModelsController extends Controller
      * List Assets in Model
      *
      * @group Models
+     * @urlParam id int required The ID of the model.
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
-     * @param  int  $id
+     *
      */
     public function assets($id) : array
     {
@@ -231,10 +233,9 @@ class AssetModelsController extends Controller
      * Update Model
      *
      * @group Models
+     * @urlParam id int required The ID of the model.
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
-     * @param  \App\Http\Requests\ImageUploadRequest  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(StoreAssetModelRequest $request, $id) : JsonResponse
@@ -270,7 +271,7 @@ class AssetModelsController extends Controller
      * @group Models
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
-     * @param  int  $id
+     * @urlParam id int required The ID of the model.
      */
     public function destroy($id) : JsonResponse
     {

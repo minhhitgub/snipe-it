@@ -1,49 +1,181 @@
-name: Files
+name: Reports
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/{object_type}/{id}/files'
+    uri: api/v1/reports/activity
     metadata:
-      groupName: Files
+      groupName: Reports
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'List Files for an Object'
+      title: 'Activity Report'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      object_type:
-        name: object_type
-        description: ''
-        required: true
-        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        name: search
+        description: 'Search term to filter results'
+        required: false
+        example: updated
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      target_type:
+        name: target_type
+        description: 'Filter by target type'
+        required: false
+        example: user
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      target_id:
+        name: target_id
+        description: 'Filter by target ID'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      item_type:
+        name: item_type
+        description: 'Filter by item type'
+        required: false
+        example: asset
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      item_id:
+        name: item_id
+        description: 'Filter by item ID'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      action_type:
+        name: action_type
+        description: 'Filter by action type'
+        required: false
+        example: create
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      created_by:
+        name: created_by
+        description: 'Filter by user ID who created the log'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      action_source:
+        name: action_source
+        description: 'Filter by action source'
+        required: false
+        example: web
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      remote_ip:
+        name: remote_ip
+        description: 'Filter by remote IP address Example:'
+        required: false
+        example: null
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      id:
-        name: id
-        description: 'The ID of the {object type}.'
-        required: true
-        example: architecto
-        type: string
+      uploads:
+        name: uploads
+        description: 'Filter to only show logs with file uploads'
+        required: false
+        example: true
+        type: boolean
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
-    cleanUrlParameters:
-      object_type: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
-      id: architecto
-    queryParameters: []
-    cleanQueryParameters: []
+      sort:
+        name: sort
+        description: 'Column to sort by. Allowed values: id, created_at, target_id, created_by, accept_signature, action_type, note, remote_ip, user_agent, target_type, item_type, action_source, action_date. Default is created_at.'
+        required: false
+        example: created_at
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      order:
+        name: order
+        description: 'Order of sorting. Allowed values: asc, desc. Default is desc.'
+        required: false
+        example: desc
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      offset:
+        name: offset
+        description: 'Number of records to skip for pagination. Default is 0.'
+        required: false
+        example: 0
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      limit:
+        name: limit
+        description: 'Maximum number of records to return. Default is 25.'
+        required: false
+        example: 25
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      search: updated
+      target_type: user
+      target_id: 1
+      item_type: asset
+      item_id: 1
+      action_type: create
+      created_by: 1
+      action_source: web
+      uploads: true
+      sort: created_at
+      order: desc
+      offset: 0
+      limit: 25
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -61,208 +193,14 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=1XRIXqHTHmoidi0ffEqwHcaQnYNbA6UYCHsK0yeE; expires=Sat, 18 Oct 2025 01:31:00 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=Q7c7iu2qi9Mil7UrdGdQhd5UHhMHwIs9J7wKxvhY; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/{object_type}/{id}/files/{file_id}'
-    metadata:
-      groupName: Files
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display File'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      object_type:
-        name: object_type
-        description: ''
-        required: true
-        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      id:
-        name: id
-        description: 'The ID of the {object type}.'
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      file_id:
-        name: file_id
-        description: 'The ID of the file.'
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      object_type: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
-      id: architecto
-      file_id: architecto
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"error":"Unauthorized or unauthenticated."}'
-        headers:
-          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
-          content-type: application/json
-          vary: Origin
-          pragma: no-cache
-          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
-          x-content-type-options: nosniff
-          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
-          referrer-policy: same-origin
-          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=yW8kji4VdrZVOH8CBP4COEYKKVG923atDdaJ0dNn; expires=Sat, 18 Oct 2025 01:31:00 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: 'api/v1/{object_type}/{id}/files'
-    metadata:
-      groupName: Files
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Upload File to an Object'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      object_type:
-        name: object_type
-        description: ''
-        required: true
-        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      id:
-        name: id
-        description: 'The ID of the {object type}.'
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      object_type: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
-      id: architecto
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/{object_type}/{id}/files/{file_id}/delete'
-    metadata:
-      groupName: Files
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Delete File'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      object_type:
-        name: object_type
-        description: ''
-        required: true
-        example: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      id:
-        name: id
-        description: 'The ID of the {object type}.'
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      file_id:
-        name: file_id
-        description: 'The ID of the file.'
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      object_type: accessories|assets|components|consumables|hardware|licenses|locations|maintenances|models|users
-      id: architecto
-      file_id: architecto
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

@@ -14,6 +14,11 @@ use Exception;
 
 class CheckoutRequest extends Controller
 {
+    /**
+     * Store Asset Request
+     *
+     * @group Account
+     */
     public function store(Asset $asset): JsonResponse
     {
         try {
@@ -29,6 +34,11 @@ class CheckoutRequest extends Controller
         }
     }
 
+    /**
+     * Cancel Asset Request
+     *
+     * @group Account
+     */
     public function destroy(Asset $asset): JsonResponse
     {
         try {

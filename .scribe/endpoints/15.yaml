@@ -1,21 +1,42 @@
-name: Licenses
+name: Locations
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/licenses/selectlist
+    uri: api/v1/locations/selectlist
     metadata:
-      groupName: Licenses
+      groupName: Locations
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: Selectlist
-      description: ''
+      title: 'Gets a paginated collection for the select2 menus'
+      description: |-
+        This is handled slightly differently as of ~4.7.8-pre, as
+        we have to do some recursive magic to get the hierarchy to display
+        properly when looking at the parent/child relationship in the
+        rich menus.
+
+        This means we can't use the normal pagination that we use elsewhere
+        in our selectlists, since we have to get the full set before we can
+        determine which location is parent/child/grandchild, etc.
+
+        This also means that hierarchy display gets a little funky when people
+        use the Select2 search functionality, but there's not much we can do about
+        that right now.
+
+        As a result, instead of paginating as part of the query, we have to grab
+        the entire data set, and then invoke a paginator manually and pass that
+        through to the SelectListTransformer.
+
+        Many thanks to @uberbrady for the help getting this working better.
+        Recursion still sucks, but I guess he doesn't have to get in the
+        sea... this time.
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -39,11 +60,14 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=GsLdJ1PUvsI9174uM06Rcv7e2T0LLe9v4lcwIbTA; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=UpVwalXoUKqNpdc1JZOoxLIbtfuGTDjmXv2FL0U4; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -51,29 +75,286 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/licenses
+    uri: 'api/v1/locations/{location_id}/assets'
     metadata:
-      groupName: Licenses
+      groupName: Locations
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'List Licenses'
+      title: 'Show Assets with Default Location'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      location_id:
+        name: location_id
+        description: 'The ID of the location.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      location_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=s6eLrXoHfx9aHRHsGokhuXGIfcWMyMK6s8Y7CuQb; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/locations/{location_id}/assigned/assets'
+    metadata:
+      groupName: Locations
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show Assets Assigned to Location'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      location_id:
+        name: location_id
+        description: 'The ID of the location.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      location_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=6IjNjFVBRoxfcpk3lgt97JCcwcwkJ18MblUUArEa; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/locations/{location_id}/assigned/accessories'
+    metadata:
+      groupName: Locations
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show Accessories Assigned to Location'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      location_id:
+        name: location_id
+        description: 'The ID of the location.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      location_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=8QVLWPz9VFdTVM9oelFsOvXEnefwKOeIuos7D23G; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/locations
+    metadata:
+      groupName: Locations
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List Locations'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters:
-      status:
-        name: status
-        description: 'Filter by license status. Options: active, inactive, expiring'
+      search:
+        name: search
+        description: 'Search term to filter results.'
         required: false
-        example: '?status=active'
+        example: Headquarters
         type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      name:
+        name: name
+        description: 'Filter by exact location name.'
+        required: false
+        example: Headquarters
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      address:
+        name: address
+        description: 'Filter by exact address.'
+        required: false
+        example: '123 Main St'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      address2:
+        name: address2
+        description: 'Filter by exact address2.'
+        required: false
+        example: 'Suite 100'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      city:
+        name: city
+        description: 'Filter by exact city.'
+        required: false
+        example: Springfield
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      zip:
+        name: zip
+        description: 'Filter by exact zip code.'
+        required: false
+        example: '12345'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      country:
+        name: country
+        description: 'Filter by exact country.'
+        required: false
+        example: USA
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      manager_id:
+        name: manager_id
+        description: 'Filter by exact manager (user) ID.'
+        required: false
+        example: 1
+        type: integer
         enumValues: []
         exampleWasSpecified: true
         nullable: false
@@ -88,75 +369,60 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
-      name:
-        name: name
-        description: 'Filter by exact license name.'
+      parent_id:
+        name: parent_id
+        description: 'Filter by exact parent location ID.'
         required: false
-        example: 'Microsoft 365'
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      status:
+        name: status
+        description: 'Filter by location status. Allowed values: active, deleted.'
+        required: false
+        example: active
         type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         custom: []
-      product_key:
-        name: product_key
-        description: 'Filter by exact product key.'
+      sort:
+        name: sort
+        description: 'Column to sort results by. Allowed values: accessorries_count, address, address2, assets_count, assigned_assets_count, rtd_assets_count, accessories_count, assigned_accessories_count, components_count, consumables_count, users_count, children_count, city, country, created_at, currency, id, image, ldap_ou, company_id, manager_id, name, rtd_assets_count, state, updated_at, zip. Default: created_at.'
         required: false
-        example: W269N
+        example: name
         type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         custom: []
-      order_number:
-        name: order_number
-        description: 'Filter by exact order number.'
+      order:
+        name: order
+        description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
         required: false
-        example: '12345'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      purchase_order:
-        name: purchase_order
-        description: 'Filter by exact purchase order.'
-        required: false
-        example: PO12345
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      license_name:
-        name: license_name
-        description: 'Filter by exact licensee name.'
-        required: false
-        example: 'John Doe'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      license_email:
-        name: license_email
-        description: 'Filter by exact licensee email.'
-        required: false
-        example: john.d
+        example: asc
         type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         custom: []
     cleanQueryParameters:
-      status: '?status=active'
+      search: Headquarters
+      name: Headquarters
+      address: '123 Main St'
+      address2: 'Suite 100'
+      city: Springfield
+      zip: '12345'
+      country: USA
+      manager_id: 1
       company_id: 1
-      name: 'Microsoft 365'
-      product_key: W269N
-      order_number: '12345'
-      purchase_order: PO12345
-      license_name: 'John Doe'
-      license_email: john.d
+      parent_id: 1
+      status: active
+      sort: name
+      order: asc
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -174,11 +440,14 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=IO91xw66IfWrGGBCgBI6lwj3IuLkd7OOqQ9NdJke; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=OrGO92pRr2bN1MO0HEk74EaOyIBpyNWW8nBBM9w1; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -186,18 +455,19 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/licenses
+    uri: api/v1/locations
     metadata:
-      groupName: Licenses
+      groupName: Locations
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Create License'
+      title: 'Create Location'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -209,7 +479,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -217,24 +490,25 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/licenses/{license_id}'
+    uri: 'api/v1/locations/{id}'
     metadata:
-      groupName: Licenses
+      groupName: Locations
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Show License'
+      title: 'Show Location'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      license_id:
-        name: license_id
-        description: 'The ID of the license.'
+      id:
+        name: id
+        description: 'The ID of the location.'
         required: true
         example: 1
         type: integer
@@ -243,7 +517,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      license_id: 1
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -263,11 +537,14 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=oHg7lJM8DAT5ZUQLjJ7KNW23lT8W6oOd0rzEwSbt; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=r40jhYlCjVborgeetW7XFFJzC3FPckbK3wiqaq9b; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -276,24 +553,25 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/licenses/{license_id}'
+    uri: 'api/v1/locations/{id}'
     metadata:
-      groupName: Licenses
+      groupName: Locations
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update License'
+      title: 'Update Location'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      license_id:
-        name: license_id
-        description: 'The ID of the license.'
+      id:
+        name: id
+        description: 'The ID of the location.'
         required: true
         example: 1
         type: integer
@@ -302,7 +580,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      license_id: 1
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -310,7 +588,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -318,24 +599,25 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/licenses/{license_id}'
+    uri: 'api/v1/locations/{id}'
     metadata:
-      groupName: Licenses
+      groupName: Locations
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Delete License'
+      title: 'Delete Location'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      license_id:
-        name: license_id
-        description: 'The ID of the license.'
+      id:
+        name: id
+        description: 'The ID of the location.'
         required: true
         example: 1
         type: integer
@@ -344,7 +626,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      license_id: 1
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -352,188 +634,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/licenses/{license_id}/seats'
-    metadata:
-      groupName: Licenses
-      groupDescription: ''
-      subgroup: 'License Seats'
-      subgroupDescription: ''
-      title: 'List License Seats'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      license_id:
-        name: license_id
-        description: 'The ID of the license.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      license_id: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"error":"Unauthorized or unauthenticated."}'
-        headers:
-          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
-          content-type: application/json
-          vary: Origin
-          pragma: no-cache
-          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
-          x-content-type-options: nosniff
-          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
-          referrer-policy: same-origin
-          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=QjJEb98EV0RwDHTQcOylyUvaRVYrNHNQ5saV5WED; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/licenses/{license_id}/seats/{id}'
-    metadata:
-      groupName: Licenses
-      groupDescription: ''
-      subgroup: 'License Seats'
-      subgroupDescription: ''
-      title: 'Show License Seat'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      license_id:
-        name: license_id
-        description: 'The ID of the license.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      id:
-        name: id
-        description: 'The ID of the seat.'
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      license_id: 1
-      id: architecto
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"error":"Unauthorized or unauthenticated."}'
-        headers:
-          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
-          content-type: application/json
-          vary: Origin
-          pragma: no-cache
-          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
-          x-content-type-options: nosniff
-          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
-          referrer-policy: same-origin
-          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=JZePiyxly78weK50lzr6qf09bL1XOr8TGIDmv0Py; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/licenses/{license_id}/seats/{id}'
-    metadata:
-      groupName: Licenses
-      groupDescription: ''
-      subgroup: 'License Seats'
-      subgroupDescription: ''
-      title: 'Update License Seat'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      license_id:
-        name: license_id
-        description: 'The ID of the license.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      id:
-        name: id
-        description: 'The ID of the seat.'
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      license_id: 1
-      id: architecto
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

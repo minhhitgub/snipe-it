@@ -1,36 +1,26 @@
-name: Components
+name: Consumables
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/components/{component}/assets'
+    uri: api/v1/consumables/selectlist
     metadata:
-      groupName: Components
+      groupName: Consumables
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Component Assets'
+      title: Selectlist
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      component:
-        name: component
-        description: 'The component.'
-        required: true
-        example: 3
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      component: 3
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -50,11 +40,76 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=l69hDtPUivTY3RkjLz37pbj2GKnC3BLNAOunKiEY; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=9SzZeaG6J8yoJtsrcqY5kJPcLvX7ObZeYK0JivkB; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/consumables/{id}/users'
+    metadata:
+      groupName: Consumables
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'User Assignments'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the consumable.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"error":"Unauthorized or unauthenticated."}'
+        headers:
+          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
+          content-type: application/json
+          vary: Origin
+          pragma: no-cache
+          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
+          x-content-type-options: nosniff
+          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
+          referrer-policy: same-origin
+          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
+          set-cookie: 'snipe-dev_local=eO7NKRGNCHJ34NL6woGI5Ux80o2tg9rIBW0LuGGd; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -62,33 +117,34 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: 'api/v1/components/{id}/checkin'
+    uri: 'api/v1/consumables/{consumable}/checkout'
     metadata:
-      groupName: Components
+      groupName: Consumables
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Checkin Component'
+      title: 'Checkout Consumable'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the component.'
+      consumable:
+        name: consumable
+        description: 'The consumable.'
         required: true
-        example: 3
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 3
+      consumable: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -96,95 +152,168 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
     custom: []
   -
     httpMethods:
-      - POST
-    uri: 'api/v1/components/{id}/checkout'
+      - GET
+    uri: api/v1/consumables
     metadata:
-      groupName: Components
+      groupName: Consumables
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Checkout Component'
+      title: 'List Consumables'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the component.'
-        required: true
-        example: 3
-        type: integer
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      filter:
+        name: filter
+        description: 'A JSON encoded array of key/value pairs to filter results by.'
+        required: false
+        example: '{"company":"1","location":"2"}'
+        type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
-    cleanUrlParameters:
-      id: 3
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      assigned_to:
-        name: assigned_to
-        description: 'The <code>id</code> of an existing record in the assets table.'
-        required: true
+      search:
+        name: search
+        description: 'A search term to filter results by.'
+        required: false
         example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      assigned_qty:
-        name: assigned_qty
-        description: ''
+      name:
+        name: name
+        description: 'Filter by exact name.'
         required: false
-        example: null
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-    cleanBodyParameters:
-      assigned_to: architecto
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/components
-    metadata:
-      groupName: Components
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'List Categories'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+      company_id:
+        name: company_id
+        description: 'Filter by exact company ID.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      category_id:
+        name: category_id
+        description: 'Filter by exact category ID.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      model_number:
+        name: model_number
+        description: 'Filter by exact model number.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      manufacturer_id:
+        name: manufacturer_id
+        description: 'Filter by exact manufacturer ID.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      supplier_id:
+        name: supplier_id
+        description: 'Filter by exact supplier ID.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      location_id:
+        name: location_id
+        description: 'Filter by exact location ID.'
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      notes:
+        name: notes
+        description: 'Filter by exact notes.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      sort:
+        name: sort
+        description: 'The column to sort results by. Must be one of the following: id, name, order_number, min_amt, purchase_date, purchase_cost, company, category, model_number, item_no, manufacturer, location, qty, image, company, location, category, supplier, manufacturer. Default is created_at.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      order:
+        name: order
+        description: 'The order to sort results by. Must be one of the following: asc, desc. Default is desc.'
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      filter: '{"company":"1","location":"2"}'
+      search: architecto
+      name: architecto
+      company_id: 16
+      category_id: 16
+      model_number: architecto
+      manufacturer_id: 16
+      supplier_id: 16
+      location_id: 16
+      notes: architecto
+      sort: architecto
+      order: architecto
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -202,11 +331,14 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=B9zjvAcjCF6c2d57F3g71TaOvN54OFQRaK7gd2OC; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=WMv6quPUXaLnZTkEXk5aBwdTDMuUgt7fQTd6uLZf; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -214,18 +346,19 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/components
+    uri: api/v1/consumables
     metadata:
-      groupName: Components
+      groupName: Consumables
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Create Component'
+      title: 'Store a newly created resource in storage.'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -237,7 +370,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -245,33 +381,34 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/components/{id}'
+    uri: 'api/v1/consumables/{id}'
     metadata:
-      groupName: Components
+      groupName: Consumables
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Show Component'
+      title: 'Show Consumable'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the component.'
+        description: 'The ID of the consumable.'
         required: true
-        example: 3
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 3
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -291,11 +428,14 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=g1FUyaIOABzelOVQTQ3FLYuQ9B1VVxwzjW0w2wTm; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=oTfWSAjrq9p5g7qEYt7eFY4Dl7io060HverF1daF; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -304,33 +444,34 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/components/{id}'
+    uri: 'api/v1/consumables/{id}'
     metadata:
-      groupName: Components
+      groupName: Consumables
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update Component'
+      title: 'Update Consumable'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the component.'
+        description: 'The ID of the consumable.'
         required: true
-        example: 3
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 3
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -338,7 +479,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -346,33 +490,34 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/components/{id}'
+    uri: 'api/v1/consumables/{id}'
     metadata:
-      groupName: Components
+      groupName: Consumables
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Delete Component'
+      title: 'Delete Consumable'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the component.'
+        description: 'The ID of the consumable.'
         required: true
-        example: 3
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 3
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -380,7 +525,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

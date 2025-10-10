@@ -231,6 +231,7 @@ class SettingsController extends Controller
     /**
      * Get a list of login attempts
      *
+     * @group Settings
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v5.0.0]
      * @param  \Illuminate\Http\Request  $request
@@ -254,6 +255,7 @@ class SettingsController extends Controller
     /**
      * Lists backup files
      *
+     * @group Settings
      * @author [A. Gianotto]
      */
     public function listBackups() : array
@@ -294,9 +296,11 @@ class SettingsController extends Controller
 
     /**
      * Downloads a backup file.
+     *
      * We use response()->download() here instead of Storage::download() because Storage::download()
      * exhausts memory on larger files.
      *
+     * @group Settings
      * @author [A. Gianotto]
      */
     public function downloadBackup($file) : JsonResponse | BinaryFileResponse
@@ -316,6 +320,7 @@ class SettingsController extends Controller
     /**
      * Determines and downloads the latest backup
      *
+     * @group Settings
      * @author [A. Gianotto]
      * @since [v6.3.1]
      */

@@ -1,11 +1,11 @@
 openapi: 3.0.3
 info:
   title: 'Evolução local de snipe-it API Documentation'
-  description: 'This documentation aims to provide all the information you need to work with the Snipe-IT API.'
+  description: 'This documentation aims to provide the information you need to work with the Snipe-IT JSON REST API.'
   version: 1.0.0
 servers:
   -
-    url: 'https://snipe-it.test'
+    url: 'https://snipe-it.test/api/v1'
 tags:
   -
     name: Accessories
@@ -68,6 +68,12 @@ tags:
     name: Notes
     description: ''
   -
+    name: 'Predefined Kits'
+    description: ''
+  -
+    name: Reports
+    description: ''
+  -
     name: Settings
     description: ''
   -
@@ -82,6 +88,15 @@ tags:
   -
     name: Users
     description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'If your account has API access enabled, you can generate a token by clicking in the top right account menu and clicking <b>API tokens</b>.'
+security:
+  -
+    default: []
 paths:
   '/api/v1/accessories/{accessory}/checkedout':
     get:
@@ -131,6 +146,56 @@ paths:
         required: true
         schema:
           type: integer
+  '/api/v1/accessories/{accessory}/checkin':
+    post:
+      summary: 'Checkin Accessory'
+      operationId: checkinAccessory
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Accessories
+    parameters:
+      -
+        in: path
+        name: accessory
+        description: 'The accessory.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/accessories/selectlist:
+    get:
+      summary: Selectlist
+      operationId: selectlist
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'A search term to filter results by name.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'A search term to filter results by name.'
+            example: null
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Accessories
   /api/v1/accessories:
     get:
       summary: 'List accessories'
@@ -411,6 +476,42 @@ paths:
                     example: 'Unauthorized or unauthenticated.'
       tags:
         - Account
+  '/api/v1/account/request/{asset_id}':
+    post:
+      summary: 'Store Asset Request'
+      operationId: storeAssetRequest
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Account
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/account/request/{asset_id}/cancel':
+    post:
+      summary: 'Cancel Asset Request'
+      operationId: cancelAssetRequest
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Account
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
   /api/v1/account/personal-access-tokens:
     post:
       summary: 'Create API token'
@@ -747,7 +848,40 @@ paths:
       summary: Selectlist
       operationId: selectlist
       description: ''
-      parameters: []
+      parameters:
+        -
+          in: query
+          name: $search
+          description: 'String to search on.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'String to search on.'
+            example: null
+            nullable: false
+        -
+          in: query
+          name: $companyId
+          description: 'Company ID to filter by.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Company ID to filter by.'
+            example: null
+            nullable: false
+        -
+          in: query
+          name: $assetStatusType
+          description: 'The asset status type to filter by: `RTD`.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'The asset status type to filter by: `RTD`.'
+            example: null
+            nullable: false
       responses:
         401:
           description: ''
@@ -763,6 +897,47 @@ paths:
                     example: 'Unauthorized or unauthenticated.'
       tags:
         - Assets
+  '/api/v1/hardware/{asset_id}/licenses':
+    get:
+      summary: 'Licenses Assigned to Asset'
+      operationId: licensesAssignedToAsset
+      description: ''
+      parameters:
+        -
+          in: query
+          name: $assetId
+          description: 'The asset ID.'
+          example: 1
+          required: true
+          schema:
+            type: integer
+            description: 'The asset ID.'
+            example: 1
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: architecto
+        required: true
+        schema:
+          type: string
   '/api/v1/hardware/bytag/{tag}':
     get:
       summary: 'Lookup by Tag'
@@ -788,8 +963,8 @@ paths:
       -
         in: path
         name: tag
-        description: ''
-        example: architecto
+        description: 'The asset tag.'
+        example: '1'
         required: true
         schema:
           type: string
@@ -820,6 +995,14 @@ paths:
         name: any
         description: ''
         example: '|{+-0p'
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: tag
+        description: 'The asset tag.'
+        example: '1'
         required: true
         schema:
           type: string
@@ -898,6 +1081,20 @@ paths:
         required: true
         schema:
           type: string
+      -
+        in: path
+        name: serial
+        description: 'Optional parameter.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: architecto
   '/api/v1/hardware/{action}/{upcoming_status}':
     get:
       summary: 'List Assets'
@@ -1293,6 +1490,36 @@ paths:
     get:
       summary: 'List Accessories Assigned to Asset'
       operationId: listAccessoriesAssignedToAsset
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Assets
+    parameters:
+      -
+        in: path
+        name: asset_id
+        description: 'The ID of the asset.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/hardware/{asset_id}/assigned/components':
+    get:
+      summary: 'List Components Assigned to Asset'
+      operationId: listComponentsAssignedToAsset
       description: ''
       parameters: []
       responses:
@@ -1731,7 +1958,18 @@ paths:
       summary: 'Show Asset'
       operationId: showAsset
       description: ''
-      parameters: []
+      parameters:
+        -
+          in: query
+          name: $assetId
+          description: 'The asset ID.'
+          example: 1
+          required: true
+          schema:
+            type: integer
+            description: 'The asset ID.'
+            example: 1
+            nullable: false
       responses:
         401:
           description: ''
@@ -4179,630 +4417,6 @@ paths:
         required: true
         schema:
           type: string
-  '/api/v1/account/request/{asset_id}':
-    post:
-      summary: ''
-      operationId: postApiV1AccountRequestAsset_id
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: asset_id
-        description: 'The ID of the asset.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/v1/account/request/{asset_id}/cancel':
-    post:
-      summary: ''
-      operationId: postApiV1AccountRequestAsset_idCancel
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: asset_id
-        description: 'The ID of the asset.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/v1/accessories/{accessory}/checkin':
-    post:
-      summary: 'Checkin Accessory'
-      operationId: checkinAccessory
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: accessory
-        description: 'The accessory.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  /api/v1/accessories/selectlist:
-    get:
-      summary: 'Gets a paginated collection for the select2 menus'
-      operationId: getsAPaginatedCollectionForTheSelect2Menus
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-  '/api/v1/hardware/{asset_id}/licenses':
-    get:
-      summary: ''
-      operationId: getApiV1HardwareAsset_idLicenses
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: asset_id
-        description: 'The ID of the asset.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-  '/api/v1/hardware/{asset_id}/assigned/components':
-    get:
-      summary: ''
-      operationId: getApiV1HardwareAsset_idAssignedComponents
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: asset_id
-        description: 'The ID of the asset.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/v1/models/{id}':
-    get:
-      summary: 'Show Model'
-      operationId: showModel
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    put:
-      summary: 'Update Model'
-      operationId: updateModel
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Models
-    delete:
-      summary: 'Delete Model'
-      operationId: deleteModel
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Models
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the model.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-  /api/v1/settings/login-attempts:
-    get:
-      summary: 'Get a list of login attempts'
-      operationId: getAListOfLoginAttempts
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-  /api/v1/settings/backups:
-    get:
-      summary: 'Lists backup files'
-      operationId: listsBackupFiles
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-  /api/v1/settings/backups/download/latest:
-    get:
-      summary: 'Determines and downloads the latest backup'
-      operationId: determinesAndDownloadsTheLatestBackup
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-  '/api/v1/settings/backups/download/{file}':
-    get:
-      summary: 'Downloads a backup file.'
-      operationId: downloadsABackupFile
-      description: "We use response()->download() here instead of Storage::download() because Storage::download()\nexhausts memory on larger files."
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: file
-        description: ''
-        example: architecto
-        required: true
-        schema:
-          type: string
-  /api/v1/kits:
-    get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    post:
-      summary: 'Store a newly created resource in storage.'
-      operationId: storeANewlyCreatedResourceInStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-  '/api/v1/kits/{id}':
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the kit.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-  '/api/v1/kits/{kit_id}/licenses':
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    post:
-      summary: 'Store the specified resource.'
-      operationId: storeTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: kit_id
-        description: 'The ID of the kit.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-  '/api/v1/kits/{kit_id}/licenses/{license_id}':
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: kit_id
-        description: 'The ID of the kit.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-      -
-        in: path
-        name: license_id
-        description: 'The ID of the license.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/v1/kits/{kit_id}/models':
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    post:
-      summary: 'Store the specified resource.'
-      operationId: storeTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: kit_id
-        description: 'The ID of the kit.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-  '/api/v1/kits/{kit_id}/accessories':
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    post:
-      summary: 'Store the specified resource.'
-      operationId: storeTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: kit_id
-        description: 'The ID of the kit.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-  '/api/v1/kits/{kit_id}/accessories/{accessory_id}':
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: kit_id
-        description: 'The ID of the kit.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-      -
-        in: path
-        name: accessory_id
-        description: 'The ID of the accessory.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/v1/kits/{kit_id}/consumables':
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    post:
-      summary: 'Store the specified resource.'
-      operationId: storeTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: kit_id
-        description: 'The ID of the kit.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-  '/api/v1/kits/{kit_id}/consumables/{consumable_id}':
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: kit_id
-        description: 'The ID of the kit.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-      -
-        in: path
-        name: consumable_id
-        description: 'The ID of the consumable.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  /api/v1/reports/activity:
-    get:
-      summary: 'Returns Activity Report JSON.'
-      operationId: returnsActivityReportJSON
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
   /api/v1/version:
     get:
       summary: 'Version API routes'
@@ -4824,36 +4438,6 @@ paths:
                     example: 'Unauthorized or unauthenticated.'
       tags:
         - Misc
-  '/api/v1/{fallbackPlaceholder}':
-    get:
-      summary: ''
-      operationId: getApiV1FallbackPlaceholder
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  error: 'Unauthorized or unauthenticated.'
-                properties:
-                  error:
-                    type: string
-                    example: 'Unauthorized or unauthenticated.'
-      tags:
-        - Misc
-    parameters:
-      -
-        in: path
-        name: fallbackPlaceholder
-        description: ''
-        example: '|{+-0p'
-        required: true
-        schema:
-          type: string
   /api/v1/models/selectlist:
     get:
       summary: 'Selectlist of Models'
@@ -4896,6 +4480,15 @@ paths:
                     example: 'Unauthorized or unauthenticated.'
       tags:
         - Models
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the model.'
+        example: 16
+        required: true
+        schema:
+          type: integer
   /api/v1/models:
     get:
       summary: 'List Models'
@@ -4925,6 +4518,52 @@ paths:
       responses: {  }
       tags:
         - Models
+  '/api/v1/models/{id}':
+    get:
+      summary: 'Show Model'
+      operationId: showModel
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Models
+    put:
+      summary: 'Update Model'
+      operationId: updateModel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Models
+    delete:
+      summary: 'Delete Model'
+      operationId: deleteModel
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Models
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the model.'
+        example: 16
+        required: true
+        schema:
+          type: integer
   '/api/v1/notes/{asset_id}/store':
     post:
       summary: 'Store Note'
@@ -4973,6 +4612,605 @@ paths:
         required: true
         schema:
           type: integer
+  /api/v1/kits:
+    get:
+      summary: 'List Kits'
+      operationId: listKits
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Predefined Kits'
+    post:
+      summary: 'Create Kit'
+      operationId: createKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+  '/api/v1/kits/{id}':
+    get:
+      summary: 'Show Kit'
+      operationId: showKit
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Predefined Kits'
+    put:
+      summary: 'Update Kit'
+      operationId: updateKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+    delete:
+      summary: 'Delete Kit'
+      operationId: deleteKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the kit.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/kits/{kit_id}/licenses':
+    get:
+      summary: 'List Licenses in Kit'
+      operationId: listLicensesInKit
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Predefined Kits'
+    post:
+      summary: 'Add License to Kit'
+      operationId: addLicenseToKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                license:
+                  type: integer
+                  description: 'The ID of the license.'
+                  example: 1
+                  nullable: false
+                quantity:
+                  type: integer
+                  description: 'The quantity of the license.'
+                  example: 1
+                  nullable: false
+              required:
+                - license
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/kits/{kit_id}/licenses/{license_id}':
+    put:
+      summary: 'Update License in Kit'
+      operationId: updateLicenseInKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+    delete:
+      summary: 'Remove License from Kit'
+      operationId: removeLicenseFromKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/kits/{kit_id}/models':
+    get:
+      summary: 'List Models in Kit'
+      operationId: listModelsInKit
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Predefined Kits'
+    post:
+      summary: 'Add Model to Kit'
+      operationId: addModelToKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: integer
+                  description: 'The ID of the model.'
+                  example: 1
+                  nullable: false
+              required:
+                - model
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/kits/{kit_id}/accessories':
+    get:
+      summary: 'List Accessories in Kit'
+      operationId: listAccessoriesInKit
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Predefined Kits'
+    post:
+      summary: 'Add Accessory to Kit'
+      operationId: addAccessoryToKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accessory:
+                  type: integer
+                  description: 'The ID of the accessory.'
+                  example: 1
+                  nullable: false
+                quantity:
+                  type: integer
+                  description: 'The quantity of the accessory.'
+                  example: 1
+                  nullable: false
+              required:
+                - accessory
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/kits/{kit_id}/accessories/{accessory_id}':
+    put:
+      summary: 'Update Accessory in Kit'
+      operationId: updateAccessoryInKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  description: 'The quantity of the accessory.'
+                  example: 1
+                  nullable: false
+    delete:
+      summary: 'Remove Accessory from Kit'
+      operationId: removeAccessoryFromKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: accessory_id
+        description: 'The ID of the accessory.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/kits/{kit_id}/consumables':
+    get:
+      summary: 'List Consumables in Kit'
+      operationId: listConsumablesInKit
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - 'Predefined Kits'
+    post:
+      summary: 'Add Consumable to Kit'
+      operationId: addConsumableToKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consumable:
+                  type: integer
+                  description: 'The ID of the consumable.'
+                  example: 1
+                  nullable: false
+                quantity:
+                  type: integer
+                  description: 'The quantity of the consumable.'
+                  example: 1
+                  nullable: false
+              required:
+                - consumable
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/kits/{kit_id}/consumables/{consumable_id}':
+    put:
+      summary: 'Update Consumable in Kit'
+      operationId: updateConsumableInKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  description: 'The quantity of the consumable.'
+                  example: 1
+                  nullable: false
+    delete:
+      summary: 'Remove Consumable from Kit'
+      operationId: removeConsumableFromKit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Predefined Kits'
+    parameters:
+      -
+        in: path
+        name: kit_id
+        description: 'The ID of the kit.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: consumable_id
+        description: 'The ID of the consumable.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/reports/activity:
+    get:
+      summary: 'Activity Report'
+      operationId: activityReport
+      description: ''
+      parameters:
+        -
+          in: query
+          name: search
+          description: 'Search term to filter results'
+          example: updated
+          required: false
+          schema:
+            type: string
+            description: 'Search term to filter results'
+            example: updated
+            nullable: false
+        -
+          in: query
+          name: target_type
+          description: 'Filter by target type'
+          example: user
+          required: false
+          schema:
+            type: string
+            description: 'Filter by target type'
+            example: user
+            nullable: false
+        -
+          in: query
+          name: target_id
+          description: 'Filter by target ID'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by target ID'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: item_type
+          description: 'Filter by item type'
+          example: asset
+          required: false
+          schema:
+            type: string
+            description: 'Filter by item type'
+            example: asset
+            nullable: false
+        -
+          in: query
+          name: item_id
+          description: 'Filter by item ID'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by item ID'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: action_type
+          description: 'Filter by action type'
+          example: create
+          required: false
+          schema:
+            type: string
+            description: 'Filter by action type'
+            example: create
+            nullable: false
+        -
+          in: query
+          name: created_by
+          description: 'Filter by user ID who created the log'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Filter by user ID who created the log'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: action_source
+          description: 'Filter by action source'
+          example: web
+          required: false
+          schema:
+            type: string
+            description: 'Filter by action source'
+            example: web
+            nullable: false
+        -
+          in: query
+          name: remote_ip
+          description: 'Filter by remote IP address Example:'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Filter by remote IP address Example:'
+            example: null
+            nullable: false
+        -
+          in: query
+          name: uploads
+          description: 'Filter to only show logs with file uploads'
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: 'Filter to only show logs with file uploads'
+            example: true
+            nullable: false
+        -
+          in: query
+          name: sort
+          description: 'Column to sort by. Allowed values: id, created_at, target_id, created_by, accept_signature, action_type, note, remote_ip, user_agent, target_type, item_type, action_source, action_date. Default is created_at.'
+          example: created_at
+          required: false
+          schema:
+            type: string
+            description: 'Column to sort by. Allowed values: id, created_at, target_id, created_by, accept_signature, action_type, note, remote_ip, user_agent, target_type, item_type, action_source, action_date. Default is created_at.'
+            example: created_at
+            nullable: false
+        -
+          in: query
+          name: order
+          description: 'Order of sorting. Allowed values: asc, desc. Default is desc.'
+          example: desc
+          required: false
+          schema:
+            type: string
+            description: 'Order of sorting. Allowed values: asc, desc. Default is desc.'
+            example: desc
+            nullable: false
+        -
+          in: query
+          name: offset
+          description: 'Number of records to skip for pagination. Default is 0.'
+          example: 0
+          required: false
+          schema:
+            type: integer
+            description: 'Number of records to skip for pagination. Default is 0.'
+            example: 0
+            nullable: false
+        -
+          in: query
+          name: limit
+          description: 'Maximum number of records to return. Default is 25.'
+          example: 25
+          required: false
+          schema:
+            type: integer
+            description: 'Maximum number of records to return. Default is 25.'
+            example: 25
+            nullable: false
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Reports
   /api/v1/settings/ldaptest:
     get:
       summary: 'Test LDAP Connection'
@@ -5001,6 +5239,27 @@ paths:
       description: ''
       parameters: []
       responses: {  }
+      tags:
+        - Settings
+  /api/v1/settings/login-attempts:
+    get:
+      summary: 'Get a list of login attempts'
+      operationId: getAListOfLoginAttempts
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
       tags:
         - Settings
   /api/v1/settings/ldaptestlogin:
@@ -5041,6 +5300,78 @@ paths:
       responses: {  }
       tags:
         - Settings
+  /api/v1/settings/backups:
+    get:
+      summary: 'Lists backup files'
+      operationId: listsBackupFiles
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Settings
+  /api/v1/settings/backups/download/latest:
+    get:
+      summary: 'Determines and downloads the latest backup'
+      operationId: determinesAndDownloadsTheLatestBackup
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Settings
+  '/api/v1/settings/backups/download/{file}':
+    get:
+      summary: 'Downloads a backup file.'
+      operationId: downloadsABackupFile
+      description: "We use response()->download() here instead of Storage::download() because Storage::download()\nexhausts memory on larger files."
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Unauthorized or unauthenticated.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Unauthorized or unauthenticated.'
+      tags:
+        - Settings
+    parameters:
+      -
+        in: path
+        name: file
+        description: ''
+        example: architecto
+        required: true
+        schema:
+          type: string
   /api/v1/statuslabels/selectlist:
     get:
       summary: Selectlist

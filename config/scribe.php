@@ -12,7 +12,7 @@ return [
     'title' => config('app.name') . ' API Documentation',
 
     // A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
-    'description' => 'This documentation aims to provide all the information you need to work with the Snipe-IT API.',
+    'description' => 'This documentation aims to provide the information you need to work with the Snipe-IT JSON REST API.',
 
     // Text to place in the "Introduction" section, right after the `description`. Markdown and HTML are supported.
     'intro_text' => <<<INTRO
@@ -22,7 +22,7 @@ return [
 
     // The base URL displayed in the docs.
     // If you're using `laravel` type, you can set this to a dynamic string, like '{{ config("app.tenant_url") }}' to get a dynamic base URL.
-    'base_url' => config("app.url"),
+    'base_url' => config("app.url") . '/api/v1',
 
     // Routes to include in the docs
     'routes' => [
@@ -42,7 +42,8 @@ return [
 
             // Exclude these routes even if they matched the rules above.
             'exclude' => [
-                'api/v1'
+                'api/v1',
+                'api/v1/{fallbackPlaceholder}'
             ],
         ],
     ],
@@ -89,7 +90,7 @@ return [
         'enabled' => true,
 
         // The base URL to use in the API tester. Leave as null to be the same as the displayed URL (`scribe.base_url`).
-        'base_url' => null,
+        'base_url' => config("app.url"),
 
         // [Laravel Sanctum] Fetch a CSRF token before each request, and add it as an X-XSRF-TOKEN header.
         'use_csrf' => true,
@@ -101,7 +102,7 @@ return [
     // How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
     'auth' => [
         // Set this to true if ANY endpoints in your API use authentication.
-        'enabled' => false,
+        'enabled' => true,
 
         // Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
         // You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
@@ -173,11 +174,6 @@ return [
         // See https://scribe.knuckles.wtf/blog/laravel-v4#easier-sorting and https://scribe.knuckles.wtf/laravel/reference/config#order for details
         // Note: does not work for `external` docs types
         'order' => [
-            'Accessories' => [
-                'GET /accessories',
-                'POST /accessories',
-                'GET accessories/{accessory}/checkedout',
-            ],
         ],
 
     ],

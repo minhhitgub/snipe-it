@@ -500,7 +500,7 @@ class AssetsController extends Controller
      * Lookup by Tag
      *
      * @group Assets
-     * @param string $tag
+     * @urlParam $tag string required The asset tag. Example: 1
      * @since [v4.2.1]
      * @author [A. Gianotto] [<snipe@snipe.net>]
      */
@@ -537,7 +537,7 @@ class AssetsController extends Controller
      *
      * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @param string $serial
+     * @urlParam $serial string
      * @since [v4.2.1]
      * @return \Illuminate\Http\JsonResponse
      */
@@ -581,7 +581,7 @@ class AssetsController extends Controller
      *
      * @group Assets
      * @author [A. Gianotto] [<snipe@snipe.net>]
-     * @param int $assetId
+     * @queryParam $assetId int required The asset ID. Example: 1
      * @since [v4.0]
      * @return \Illuminate\Http\JsonResponse
      */
@@ -598,6 +598,13 @@ class AssetsController extends Controller
         return response()->json(Helper::formatStandardApiResponse('error', null, trans('admin/hardware/message.does_not_exist')), 200);
     }
 
+    /**
+     * Licenses Assigned to Asset
+     *
+     * @group Assets
+     * @queryParam $assetId int required The asset ID. Example: 1
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function licenses(Request $request, $id): array
     {
         $this->authorize('view', Asset::class);
@@ -613,6 +620,9 @@ class AssetsController extends Controller
      * Selectlist
      *
      * @group Assets
+     * @queryParam $search string String to search on. No-example
+     * @queryParam $companyId int Company ID to filter by. No-example
+     * @queryParam $assetStatusType string The asset status type to filter by: `RTD`. No-example
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0.16]
      * @see \App\Http\Transformers\SelectlistTransformer
@@ -1393,6 +1403,11 @@ class AssetsController extends Controller
         return (new AssetsTransformer)->transformCheckedoutAccessories($accessory_checkouts, $total);
     }
 
+    /**
+     * List Components Assigned to Asset
+     *
+     * @group Assets
+     */
     public function assignedComponents(Request $request, Asset $asset): JsonResponse|array
     {
         $this->authorize('view', Asset::class);

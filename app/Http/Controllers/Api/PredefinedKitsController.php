@@ -16,8 +16,9 @@ use App\Http\Transformers\SelectlistTransformer;
 class PredefinedKitsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Kits
      *
+     * @group Predefined Kits
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) : JsonResponse | array
@@ -62,8 +63,9 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create Kit
      *
+     * @group Predefined Kits
      * @param  \Illuminate\Http\Request  $request
      */
     public function store(Request $request) : JsonResponse
@@ -80,9 +82,10 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Kit
      *
-     * @param  int  $id
+     * @group Predefined Kits
+     * @urlParam $id int  required The ID of the kit. Example: 1
      */
     public function show($id) :  array
     {
@@ -93,10 +96,10 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Kit
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id kit id
+     * @group Predefined Kits
+     * @urlParam $id int  required The ID of the kit. Example: 1
      */
     public function update(Request $request, $id) : JsonResponse
     {
@@ -112,9 +115,10 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Kit
      *
-     * @param  int  $id
+     * @group Predefined Kits
+     * @urlParam $id int  required The ID of the kit. Example: 1
      */
     public function destroy($id) : JsonResponse
     {
@@ -133,8 +137,9 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Gets a paginated collection for the select2 menus
+     * Selectlist
      *
+     * @group Predefined Kits
      * @see \App\Http\Transformers\SelectlistTransformer
      */
     public function selectlist(Request $request) : array
@@ -154,9 +159,10 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * List Licenses in Kit
      *
-     * @param  int  $id
+     * @group Predefined Kits
+     * @urlParam $kit_id int  required The ID of the kit. Example: 1
      * @return \Illuminate\Http\Response
      */
     public function indexLicenses($kit_id) : array
@@ -169,9 +175,12 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Store the specified resource.
+     * Add License to Kit
      *
-     * @param  int  $id
+     * @group Predefined Kits
+     * @urlParam $kit_id int  required The ID of the kit. Example: 1
+     * @bodyParam license int required The ID of the license. Example: 1
+     * @bodyParam quantity int The quantity of the license. Example: 1
      * @return \Illuminate\Http\Response
      */
     public function storeLicense(Request $request, $kit_id) : JsonResponse
@@ -196,10 +205,11 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update License in Kit
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @urlParam $license_id int required The ID of the license. Example: 1
      */
     public function updateLicense(Request $request, $kit_id, $license_id) : JsonResponse
     {
@@ -215,9 +225,11 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove License from Kit
      *
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @urlParam $license_id int required The ID of the license. Example: 1
      */
     public function detachLicense($kit_id, $license_id) : JsonResponse
     {
@@ -230,9 +242,10 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * List Models in Kit
      *
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
      */
     public function indexModels($kit_id) : array
     {
@@ -244,9 +257,11 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Store the specified resource.
+     * Add Model to Kit
      *
-     * @param  int  $id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @bodyParam model int required The ID of the model. Example: 1
      */
     public function storeModel(Request $request, $kit_id) : JsonResponse
     {
@@ -270,10 +285,11 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Model in Kit
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @bodyParam quantity int required The quantity of the model. Example: 1
      */
     public function updateModel(Request $request, $kit_id, $model_id) : JsonResponse
     {
@@ -289,9 +305,11 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Model from Kit
      *
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @urlParam $model_id int required The ID of the model. Example: 1
      */
     public function detachModel($kit_id, $model_id) : JsonResponse
     {
@@ -304,9 +322,10 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * List Consumables in Kit
      *
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
      */
     public function indexConsumables($kit_id) : array
     {
@@ -318,9 +337,12 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Store the specified resource.
+     * Add Consumable to Kit
      *
-     * @param  int  $id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @bodyParam consumable int required The ID of the consumable. Example: 1
+     * @bodyParam quantity int The quantity of the consumable. Example: 1
      */
     public function storeConsumable(Request $request, $kit_id) : JsonResponse
     {
@@ -344,10 +366,12 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Consumable in Kit
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @urlParam $consumable_id int required The ID of the consumable. Example: 1
+     * @bodyParam quantity int The quantity of the consumable. Example: 1
      */
     public function updateConsumable(Request $request, $kit_id, $consumable_id) : JsonResponse
     {
@@ -363,9 +387,11 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove Consumable from Kit
      *
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @urlParam $consumable_id int required The ID of the consumable. Example: 1
      */
     public function detachConsumable($kit_id, $consumable_id) : JsonResponse
     {
@@ -378,9 +404,10 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * List Accessories in Kit
      *
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
      */
     public function indexAccessories($kit_id) : array
     {
@@ -392,9 +419,12 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Store the specified resource.
+     * Add Accessory to Kit
      *
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @bodyParam accessory int required The ID of the accessory. Example: 1
+     * @bodyParam quantity int The quantity of the accessory. Example: 1
      */
     public function storeAccessory(Request $request, $kit_id) : JsonResponse
     {
@@ -418,10 +448,12 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Accessory in Kit
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @urlParam $accessory_id int required The ID of the accessory. Example: 1
+     * @bodyParam quantity int The quantity of the accessory. Example: 1
      */
     public function updateAccessory(Request $request, $kit_id, $accessory_id) : JsonResponse
     {
@@ -437,9 +469,11 @@ class PredefinedKitsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove Accessory from Kit
      *
-     * @param  int  $kit_id
+     * @group Predefined Kits
+     * @urlParam $kit_id int required The ID of the kit. Example: 1
+     * @urlParam $accessory_id int required The ID of the accessory. Example: 1
      */
     public function detachAccessory($kit_id, $accessory_id) : JsonResponse
     {

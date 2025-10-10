@@ -1,137 +1,74 @@
-name: Maintenances
+name: Imports
 description: ''
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/v1/maintenances
+      - POST
+    uri: 'api/v1/imports/process/{import}'
     metadata:
-      groupName: Maintenances
+      groupName: Imports
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'List Maintenances'
+      title: 'Process Import'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters:
-      search:
-        name: search
-        description: 'Search term to filter results.'
-        required: false
-        example: repair
+    urlParameters:
+      import:
+        name: import
+        description: ''
+        required: true
+        example: architecto
         type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      asset_id:
-        name: asset_id
-        description: 'Filter by exact asset ID.'
-        required: false
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      supplier_id:
-        name: supplier_id
-        description: 'Filter by exact supplier ID.'
-        required: false
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      created_by:
-        name: created_by
-        description: 'Filter by exact user ID who created the maintenance. Example'
-        required: false
-        example: 16
-        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      url:
-        name: url
-        description: 'Filter by exact URL.'
-        required: false
-        example: 'http://example.com'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      asset_maintenance_type:
-        name: asset_maintenance_type
-        description: 'Filter by exact maintenance type.'
-        required: false
-        example: repair
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      sort:
-        name: sort
-        description: 'Column to sort results by. Allowed values: id, name, asset_maintenance_time, asset_maintenance_type, cost, start_date, completion_date, notes, asset_tag, asset_name, serial, created_by, supplier, location, is_warranty, status_label. Default: created_at.'
-        required: false
-        example: name
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      order:
-        name: order
-        description: 'Order of sorted results. Allowed values: asc, desc. Default: desc.'
-        required: false
-        example: asc
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      offset:
-        name: offset
-        description: 'Offset/starting position of the results. Default: 0.'
-        required: false
-        example: 0
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-      limit:
-        name: limit
-        description: 'Limit the number of results returned. Default: 25. Maximum: 100.'
-        required: false
-        example: 50
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
-    cleanQueryParameters:
-      search: repair
-      asset_id: 1
-      supplier_id: 1
-      created_by: 16
-      url: 'http://example.com'
-      asset_maintenance_type: repair
-      sort: name
-      order: asc
-      offset: 0
-      limit: 50
+    cleanUrlParameters:
+      import: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/imports
+    metadata:
+      groupName: Imports
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List Import Files'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -149,11 +86,14 @@ endpoints:
           feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
           referrer-policy: same-origin
           content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=MykmAIDiNGruoLSzqvzqlMIoUTnOUqr2pVVfgFw1; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
+          set-cookie: 'snipe-dev_local=lj8o7doJNMvuEIVNyZKehmNRHGnHDPN2afmwMD6i; expires=Sat, 18 Oct 2025 20:42:52 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -161,18 +101,19 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/maintenances
+    uri: api/v1/imports
     metadata:
-      groupName: Maintenances
+      groupName: Imports
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Create Maintenance'
+      title: 'Save Import File'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -184,108 +125,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/maintenances/{id}'
-    metadata:
-      groupName: Maintenances
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'View Maintenance'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the maintenance.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 2
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"error":"Unauthorized or unauthenticated."}'
-        headers:
-          cache-control: 'max-age=0, must-revalidate, no-cache, no-store, private'
-          content-type: application/json
-          vary: Origin
-          pragma: no-cache
-          expires: 'Sun, 02 Jan 1990 00:00:00 GMT'
-          x-content-type-options: nosniff
-          feature-policy: "accelerometer 'none';autoplay 'none';camera 'none';display-capture 'none';document-domain 'none';encrypted-media 'none';fullscreen 'none';geolocation 'none';sync-xhr 'none';usb 'none';xr-spatial-tracking 'none'"
-          referrer-policy: same-origin
-          content-security-policy: "default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src 'self';object-src 'none';font-src 'self' data:;img-src 'self' data: https://snipe-it.test https://avatars.githubusercontent.com/u/ https://www.google.com/images/branding/googlelogo/2x/ https://snipe-flysystem-public-test.s3-us-west-2.amazonaws.com https://secure.gravatar.com http://gravatar.com maps.google.com maps.gstatic.com *.googleapis.com"
-          set-cookie: 'snipe-dev_local=fCDCxFbwzZZwPH8hOpwKcjLz4YCR2gZ2DKGQJT4u; expires=Sat, 18 Oct 2025 01:30:59 GMT; Max-Age=720000; path=/; secure; httponly; samesite=lax'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/maintenances/{id}'
-    metadata:
-      groupName: Maintenances
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update Maintenance'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the maintenance.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 2
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
@@ -293,33 +136,34 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/maintenances/{id}'
+    uri: 'api/v1/imports/{id}'
     metadata:
-      groupName: Maintenances
+      groupName: Imports
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Delete Maintenance'
+      title: 'Delete Import File'
       description: ''
       authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the maintenance.'
+        description: 'The ID of the import.'
         required: true
-        example: 2
-        type: integer
+        example: architecto
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 2
+      id: architecto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -327,7 +171,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

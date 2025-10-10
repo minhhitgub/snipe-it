@@ -338,6 +338,7 @@ class AccessoriesController extends Controller
     /**
      * Checkin Accessory
      *
+     * @group Accessories
      * @param Request $request
      * @param int $accessoryUserId
      * @param string $backto
@@ -379,8 +380,10 @@ class AccessoriesController extends Controller
 
 
     /**
-    * Gets a paginated collection for the select2 menus
+    * Selectlist
     *
+     * @group Accessories
+     * @queryParam search string A search term to filter results by name. No-example
     * @see \App\Http\Transformers\SelectlistTransformer
     *
     */

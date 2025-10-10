@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
+use Knuckles\Camel\Extraction\ExtractedEndpointData;
+use Symfony\Component\HttpFoundation\Request;
+use Knuckles\Scribe\Scribe;
 
 /**
  * This service provider handles setting the observers on models
@@ -64,6 +67,16 @@ class AppServiceProvider extends ServiceProvider
                 Log::error("Your APP_URL in your .env is misconfigured - it is: ".config('app.url').". Many things will work strangely unless you fix it.");
             }
         }
+
+        // Be sure to wrap in a `class_exists()`,
+        // so production doesn't break if you installed Scribe as dev-only
+        if (class_exists(\Knuckles\Scribe\Scribe::class)) {
+            Scribe::beforeResponseCall(function (Request $request, ExtractedEndpointData $endpointData) {
+                $token = User::first()->api_token;
+                $request->headers->add(["Authorization" => "Bearer $token"]);
+            });
+        }
+        // ...
 
         \Illuminate\Pagination\Paginator::useBootstrap();
 

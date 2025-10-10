@@ -13,8 +13,23 @@ use Illuminate\Http\JsonResponse;
 class ReportsController extends Controller
 {
     /**
-     * Returns Activity Report JSON.
+     * Activity Report
      *
+     * @group Reports
+     * @queryParam search string Search term to filter results Example: updated
+     * @queryParam target_type string Filter by target type Example: user
+     * @queryParam target_id integer Filter by target ID Example: 1
+     * @queryParam item_type string Filter by item type Example: asset
+     * @queryParam item_id integer Filter by item ID Example: 1
+     * @queryParam action_type string Filter by action type Example: create
+     * @queryParam created_by integer Filter by user ID who created the log Example: 1
+     * @queryParam action_source string Filter by action source Example: web
+     * @queryParam remote_ip string Filter by remote IP address Example: No-example
+     * @queryParam uploads boolean Filter to only show logs with file uploads Example: true
+     * @queryParam sort string Column to sort by. Allowed values: id, created_at, target_id, created_by, accept_signature, action_type, note, remote_ip, user_agent, target_type, item_type, action_source, action_date. Default is created_at. Example: created_at
+     * @queryParam order string Order of sorting. Allowed values: asc, desc. Default is desc. Example: desc
+     * @queryParam offset integer Number of records to skip for pagination. Default is 0. Example: 0
+     * @queryParam limit integer Maximum number of records to return. Default is 25. Example: 25
      * @author [A. Gianotto] [<snipe@snipe.net>]
      * @since [v4.0]
      */
