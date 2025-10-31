@@ -1,7 +1,10 @@
+@aware(['name'])
+
 @props([
     'value' => null,
     'required' => false,
     'end_date' => null,
+    'name' => null,
 ])
 
 <!-- Datepicker -->

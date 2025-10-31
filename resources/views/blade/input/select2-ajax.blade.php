@@ -1,13 +1,21 @@
+@aware(['name'])
+
 @props([
     'selected' => null,
     'forLivewire' => false,
     'data_endpoint' => false,
     'data_placeholder' => false,
     'multiple' => false,
-    'item' => null,
     'item_model' => null,
     'name' => null,
 ])
+
+@if (!$selected)
+    @php
+        $selected = old($name);
+    @endphp
+@endif
+
 
 <select
         {{ ($multiple == 'true')? ' multiple' : '' }}
@@ -17,13 +25,7 @@
         data-placeholder="{{ $data_placeholder }}"
         name="{{ $name }}"
 >
-    @if ($item && $selected)
-
-        @if (old($name))
-        <option value="{{ old($name) }}" selected="selected" role="option" aria-selected="true">
-            {{ $item_model::find(old($name)) ? $item_model::find(old($name))->display_name : '' }}
-        </option>
-       @endif
+    @if ($selected)
 
         @if (is_integer($selected))
             <option value="{{ $selected }}" selected="selected" role="option" aria-selected="true">

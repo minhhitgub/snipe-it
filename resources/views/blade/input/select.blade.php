@@ -1,3 +1,5 @@
+@aware(['name'])
+
 @props([
     // <options> can either be provided as key => value pairs
     // or passed in via the default $slot
@@ -8,6 +10,7 @@
 ])
 
 <select
+     name="{{ $name }}"
     {{ $attributes->class(['select2', 'livewire-select2' => $forLivewire]) }}
     @if($forLivewire) data-livewire-component="{{ $this->getId() }}" @endif
 >
